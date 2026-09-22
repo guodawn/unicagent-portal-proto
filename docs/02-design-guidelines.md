@@ -98,15 +98,22 @@ import './styles/global.css';
 
 - 功能图标：`@douyinfe/semi-icons`（尺寸 20/24，颜色 `--semi-color-primary` 或 `--semi-color-text-1`）。
 - 区块装饰图形：内联 SVG（渐变取自主题主色），放在 `src/components/icons/`，**统一组件化**（如 `<MatrixIcon />`），不允许散落的 `<img>` 装饰图。
+- **程序生成视觉（V0.1.1 起）**：营销区块的"插画/图片"一律用 CSS/SVG 程序生成（如 Hero 浮动产品小卡、跑马灯文字 Logo、渐变光斑），保证零版权与脱敏风险；未来需要真实图片/视频时，统一放 `public/` 或 `src/assets/` 并在 `docs/04` 对应模式里登记素材位。
 - 空态插画：`@douyinfe/semi-illustrations`。
-- 原型阶段**不使用真实图片素材**（照片、客户 Logo 图），全部用 SVG/文字占位，避免版权与脱敏问题。
 
 ## 7. 动效
 
 - 通用过渡：`0.2s ease`（hover、颜色、位移）。
-- 轮播：使用 Semi `Carousel`（公告轮播自动播放 4s；行业方案轮播支持页码指示）。
-- 首屏允许轻量入场动画（fade-in + up 8px），但必须尊重 `prefers-reduced-motion`。
-- 禁止大规模视差/粒子等重型动效（原型以交付还原与演示稳定性优先）。
+- **动效清单（V0.1.1）**：
+  - `data-reveal` 滚动入场（IntersectionObserver + `.is-revealed`，支持 `transitionDelay` 交错；入场后 JS 自动清除延迟避免拖慢 hover）；
+  - Hero：标题高亮词轮换（3.2s）、浮动小卡 `portal-float` + 鼠标视差（`--mx/--my` 写入 section，子卡用独立 `translate` 属性承接，避免被 float 关键帧覆盖）；
+  - 私有化横幅：`portal-shine` 流光扫过；
+  - 行业轮播：自动播放 5s + `hoverToPause`；
+  - LOGO 墙：双行反向跑马灯（`portal-marquee(-reverse)`，hover 暂停，边缘遮罩渐隐）；
+  - 底部 CTA 主卡 / 品牌口号：`portal-gradient-pan` 渐变流动；
+  - 装饰光斑：`portal-drift` 缓慢漂移。
+- 首屏允许轻量入场动画，全部循环动效与入场必须尊重 `prefers-reduced-motion`（`global.css` 统一关闭）。
+- 禁止大规模视差滚动/粒子等重型动效（原型以交付还原与演示稳定性优先）。
 
 ## 8. 响应式断点
 

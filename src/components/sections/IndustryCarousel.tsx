@@ -19,7 +19,7 @@ export const IndustryCarousel: React.FC = () => {
         <div className="ind-wrap">
           <Carousel
             className="ind-carousel"
-            autoPlay={false}
+            autoPlay={{ interval: 5000, hoverToPause: true }}
             showArrow
             arrowType="hover"
             showIndicator={false}

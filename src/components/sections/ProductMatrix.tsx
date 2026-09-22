@@ -4,24 +4,26 @@ import { IconArrowRight } from '@douyinfe/semi-icons';
 import { MATRIX_HEAD, MATRIX_ITEMS } from '@/mock/content';
 import { MatrixGlyph } from '@/components/icons';
 
-/** 区块模式 4：卡片矩阵 —— 四大能力入口（docs/04 §4） */
+/** 区块模式 4：卡片矩阵 —— 四大能力入口（docs/04 §4），滚动交错入场 */
 export const ProductMatrix: React.FC = () => {
   const navigate = useNavigate();
 
   return (
     <section className="p-section">
       <div className="p-container">
-        <div className="p-section-head">
+        <div className="p-section-head" data-reveal>
           <h2>{MATRIX_HEAD.title}</h2>
           <p className="p-section-lead">{MATRIX_HEAD.lead}</p>
         </div>
         <div className="matrix-grid">
-          {MATRIX_ITEMS.map((item) => (
+          {MATRIX_ITEMS.map((item, index) => (
             <div
               key={item.title}
               className="matrix-card"
               role="link"
               tabIndex={0}
+              data-reveal
+              style={{ transitionDelay: `${index * 90}ms` }}
               onClick={() => navigate(item.path)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') navigate(item.path);

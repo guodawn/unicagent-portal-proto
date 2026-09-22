@@ -668,6 +668,356 @@
   transform: translateY(-2px);
 }
 
+/* =============================================================
+   灵动与多样性增强（V0.1.1，规范见 docs/02 §7 / docs/04 各模式动效注记）
+   全部视觉由主题令牌 + CSS/SVG 程序生成，不引入图片素材
+   ============================================================= */
+
+/* ---------- Hero：氛围漂移 / 轮换词 / 浮动卡视差 ---------- */
+.hero-blob {
+  animation: portal-drift 14s ease-in-out infinite;
+}
+
+.hero-blob--2 {
+  animation-duration: 18s;
+  animation-delay: -6s;
+}
+
+.hero-highlight {
+  display: inline-block;
+  animation: portal-word-in 0.55s ease both;
+}
+
+/* 浮动小卡：桌面端展示，随鼠标轻视差（--mx/--my 由 HeroBanner 写入） */
+.hero-float-card {
+  position: absolute;
+  z-index: 1;
+  padding: 14px 16px;
+  background: color-mix(in srgb, var(--semi-color-bg-1) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--semi-color-border);
+  border-radius: var(--portal-radius-card);
+  box-shadow: var(--portal-shadow-hover);
+  /* 视差用独立 translate 属性，避免被 portal-float 关键帧的 transform 覆盖 */
+  translate: calc(var(--mx, 0) * var(--parallax, 14px)) calc(var(--my, 0) * var(--parallax, 14px));
+  transition: translate 0.25s ease-out;
+  pointer-events: none;
+}
+
+.hero-float-card--chat {
+  --parallax: 22px;
+  left: 6%;
+  top: 26%;
+  animation: portal-float 6s ease-in-out infinite;
+}
+
+.hero-float-card--model {
+  --parallax: 34px;
+  right: 5%;
+  top: 22%;
+  animation: portal-float 7.5s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+
+.hero-float-card--compute {
+  --parallax: 16px;
+  right: 12%;
+  bottom: 14%;
+  animation: portal-float 6.8s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.hero-chat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-chat-row--reply {
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.hero-chat-avatar {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--semi-color-secondary);
+  background: color-mix(in srgb, var(--semi-color-secondary) 12%, var(--semi-color-bg-0));
+  border-radius: 999px;
+  padding: 2px 8px;
+  flex-shrink: 0;
+}
+
+.hero-chat-bubble {
+  font-size: 12px;
+  color: var(--semi-color-text-1);
+  background: var(--semi-color-fill-0);
+  border-radius: 10px 10px 10px 2px;
+  padding: 5px 10px;
+}
+
+.hero-chat-bubble--done {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 10px 10px 2px 10px;
+  color: var(--semi-color-success);
+  background: color-mix(in srgb, var(--semi-color-success) 10%, var(--semi-color-bg-0));
+}
+
+.hero-model-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--semi-color-text-0);
+}
+
+.hero-model-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--semi-color-success);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--semi-color-success) 45%, transparent);
+  animation: portal-pulse-dot 2s ease-out infinite;
+}
+
+@keyframes portal-pulse-dot {
+  to {
+    box-shadow: 0 0 0 7px transparent;
+  }
+}
+
+.hero-spark {
+  width: 128px;
+  height: 34px;
+  margin: 8px 0 4px;
+}
+
+.hero-model-price {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--semi-color-primary);
+}
+
+.hero-gauge-label {
+  font-size: 11px;
+  color: var(--semi-color-text-2);
+  margin-bottom: 8px;
+}
+
+.hero-gauge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-gauge-bar {
+  width: 96px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--semi-color-fill-0);
+  overflow: hidden;
+}
+
+.hero-gauge-fill {
+  width: 87%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--semi-color-primary), var(--semi-color-secondary));
+  animation: hero-gauge-grow 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes hero-gauge-grow {
+  from {
+    width: 62%;
+  }
+  to {
+    width: 91%;
+  }
+}
+
+.hero-gauge-num {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--semi-color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- 私有化横幅：流光扫过 + 氛围光斑 ---------- */
+.promo-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-card::before {
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  right: -60px;
+  top: -140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.promo-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 90px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  animation: portal-shine 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ---------- 产品矩阵：hover 图标弹跳 + 顶部渐变描边 ---------- */
+.matrix-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 3px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, var(--semi-color-primary), var(--semi-color-secondary));
+  opacity: 0;
+  transition: var(--portal-transition);
+}
+
+.matrix-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-card:hover::before {
+  opacity: 1;
+}
+
+.matrix-icon {
+  transition: var(--portal-transition);
+}
+
+.matrix-card:hover .matrix-icon {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--semi-color-primary) 24%, transparent);
+}
+
+/* ---------- 六大优势：主题色板多彩图标 ---------- */
+.adv-icon--primary {
+  color: var(--semi-color-primary);
+  background: color-mix(in srgb, var(--semi-color-primary) 9%, var(--semi-color-bg-0));
+  border-color: color-mix(in srgb, var(--semi-color-primary) 26%, transparent);
+}
+
+.adv-icon--secondary {
+  color: var(--semi-color-secondary);
+  background: color-mix(in srgb, var(--semi-color-secondary) 9%, var(--semi-color-bg-0));
+  border-color: color-mix(in srgb, var(--semi-color-secondary) 26%, transparent);
+}
+
+.adv-icon--success {
+  color: var(--semi-color-success);
+  background: color-mix(in srgb, var(--semi-color-success) 9%, var(--semi-color-bg-0));
+  border-color: color-mix(in srgb, var(--semi-color-success) 26%, transparent);
+}
+
+.adv-icon--warning {
+  color: var(--semi-color-warning);
+  background: color-mix(in srgb, var(--semi-color-warning) 10%, var(--semi-color-bg-0));
+  border-color: color-mix(in srgb, var(--semi-color-warning) 28%, transparent);
+}
+
+/* ---------- 行业轮播：装饰 emoji 浮动 ---------- */
+.ind-decor-emoji {
+  display: inline-block;
+  animation: portal-float 5.5s ease-in-out infinite;
+}
+
+/* ---------- LOGO 墙：双行反向跑马灯 ---------- */
+.logos-marquee-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: portal-marquee 36s linear infinite;
+}
+
+.marquee--reverse .marquee-track {
+  animation-name: portal-marquee-reverse;
+  animation-duration: 42s;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---------- 客户评价：多彩引号 ---------- */
+.testi-card--primary .testi-quote::before {
+  color: var(--semi-color-primary);
+}
+
+.testi-card--secondary .testi-quote::before {
+  color: var(--semi-color-secondary);
+}
+
+.testi-card--success .testi-quote::before {
+  color: var(--semi-color-success);
+}
+
+/* ---------- 底部 CTA：主卡流光渐变 ---------- */
+.cta-card--primary {
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--semi-color-primary) 14%, var(--semi-color-bg-0)),
+    color-mix(in srgb, var(--semi-color-secondary) 12%, var(--semi-color-bg-0)),
+    color-mix(in srgb, var(--semi-color-primary) 14%, var(--semi-color-bg-0))
+  );
+  background-size: 220% 220%;
+  animation: portal-gradient-pan 9s ease-in-out infinite;
+  border-color: color-mix(in srgb, var(--semi-color-primary) 30%, transparent);
+}
+
+.cta-card--alt {
+  background: var(--semi-color-fill-0);
+  border-color: var(--semi-color-border);
+}
+
+/* ---------- 品牌口号：渐变流光文字 ---------- */
+.slogan-title {
+  background: linear-gradient(
+    100deg,
+    var(--semi-color-text-0) 30%,
+    var(--semi-color-primary) 46%,
+    var(--semi-color-secondary) 54%,
+    var(--semi-color-text-0) 70%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: portal-gradient-pan 7s ease-in-out infinite;
+}
+
 /* ================= 响应式 ================= */
 @media (max-width: 992px) {
   .matrix-grid {
@@ -676,10 +1026,6 @@
 
   .adv-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .logos-grid {
-    grid-template-columns: repeat(4, 1fr);
   }
 
   .testi-grid {
@@ -693,6 +1039,10 @@
   }
 
   .ind-decor {
+    display: none;
+  }
+
+  .hero-float-card {
     display: none;
   }
 }
@@ -725,14 +1075,10 @@
     grid-template-columns: 1fr;
   }
 
-  .logos-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-
   .logos-item {
-    height: 60px;
+    height: 56px;
     font-size: 12px;
+    flex-shrink: 0;
   }
 
   .ind-carousel,
