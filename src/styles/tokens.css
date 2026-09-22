@@ -1,0 +1,11 @@
+/* 门户自有设计令牌（见 docs/02 §1.2）——组件只消费变量，禁止硬编码尺寸 */
+:root {
+  --portal-container: 1200px;
+  --portal-section-y: 80px;
+  --portal-radius-card: 12px;
+  --portal-radius-lg: 16px;
+  --portal-shadow-card: 0 2px 12px rgba(15, 18, 34, 0.06);
+  --portal-shadow-hover: 0 8px 24px rgba(15, 18, 34, 0.12);
+  --portal-transition: all 0.2s ease;
+  --portal-header-h: 64px;
+}

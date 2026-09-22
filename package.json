@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "UnicAgent 企业门户高保真前端原型项目（产品经理需求澄清与研发100%还原交付物）",
+  "description": "众调 AI 生态平台门户网站高保真原型（产品经理需求澄清与研发100%还原交付物）",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
