@@ -22,6 +22,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 原型还原（docs/07 §2.3）：body 字体栈以原型为准。
+   Semi 主题包的 body/:host 字体规则注入顺序在 proto.css 之后，
+   用 html > body（0,0,2）锁定优先级，保证与原型渲染一致。 */
+html > body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
 a {
   text-decoration: none;
   color: inherit;

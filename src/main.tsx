@@ -3,6 +3,8 @@ import '@douyinfe/semi-ui/react19-adapter';
 import '@semi-bot/semi-theme-figma/semi.min.css';
 import './styles/tokens.css';
 import './styles/global.css';
+// 原型还原样式（docs/07）：众调AI生态服务平台静态原型 CSS 逐字复制，最后加载以接管全局视觉
+import './styles/proto.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

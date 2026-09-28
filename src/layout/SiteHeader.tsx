@@ -1,159 +1,73 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
-import { Button, Dropdown, SideSheet, Toast } from '@douyinfe/semi-ui';
-import { IconMenu } from '@douyinfe/semi-icons';
-import { BRAND, NAV_ITEMS, type NavItem } from '@/mock/content';
+import { LogoMarkSvg, NAV_DROPDOWN_ITEMS } from '@/proto/data';
 
-function isItemActive(item: NavItem, pathname: string): boolean {
-  if (pathname === item.path) return true;
-  if (item.children) {
-    return item.children.some(
-      (child) => pathname === child.path || pathname.startsWith(`${child.path}/`)
-    );
-  }
-  return pathname.startsWith(`${item.path}/`);
-}
-
-function BrandMark({ size = 36 }: { size?: number }) {
-  return (
-    <div className="sh-logo-mark" style={{ width: size, height: size, fontSize: size * 0.45 }}>
-      众
-    </div>
-  );
-}
-
-const DesktopNav: React.FC = () => {
+/**
+ * 原型版顶部导航（docs/07 §3.1）：
+ * sticky 毛玻璃 + 「首页」hover 下拉（3 个二级服务页入口）。
+ * 「行业解决方案」保持原型锚点行为：非首页先回首页，140ms 后平滑滚动。
+ */
+export const SiteHeader: React.FC = () => {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  return (
-    <nav className="sh-nav" aria-label="主导航">
-      {NAV_ITEMS.map((item) => {
-        const active = isItemActive(item, pathname);
-        const trigger = (
-          <Link
-            to={item.path}
-            className={`sh-nav-item${active ? ' is-active' : ''}`}
-            aria-current={active ? 'page' : undefined}
-          >
-            {item.label}
-            {item.children ? <span className="sh-caret" aria-hidden /> : null}
-          </Link>
-        );
-
-        if (!item.children) {
-          return <div key={item.path}>{trigger}</div>;
-        }
-
-        return (
-          <Dropdown
-            key={item.path}
-            trigger="hover"
-            position="bottomLeft"
-            className="sh-dropdown"
-            render={
-              <div className="sh-dropdown-panel">
-                {item.children.map((child) => (
-                  <Link key={child.path} to={child.path} className="sh-dropdown-item">
-                    <div className="sh-dropdown-item-head">
-                      {child.label}
-                      {child.tag ? <span className="sh-dropdown-tag">{child.tag}</span> : null}
-                    </div>
-                    <div className="sh-dropdown-item-desc">{child.description}</div>
-                  </Link>
-                ))}
-              </div>
-            }
-          >
-            {trigger}
-          </Dropdown>
-        );
-      })}
-    </nav>
-  );
-};
-
-export const SiteHeader: React.FC = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    Toast.info('原型演示：登录功能待建设');
-  };
-
-  const handleExperience = () => {
-    navigate('/models/playground');
+  const handleAnchor = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const scroll = () => {
+      const t = document.querySelector(href);
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    if (pathname !== '/') {
+      navigate('/');
+      window.setTimeout(scroll, 140);
+    } else {
+      scroll();
+    }
   };
 
   return (
-    <header className="sh-header">
-      <div className="p-container sh-inner">
-        <Link to="/" className="sh-logo" aria-label={`${BRAND.name} 首页`}>
-          <BrandMark />
-          <span className="sh-logo-text">
-            <strong>{BRAND.name}</strong>
-            <small>{BRAND.en} · 企业级 AI 生态平台</small>
-          </span>
+    <header className="nav">
+      <div className="wrap nav-inner">
+        <Link to="/" className="logo">
+          <span className="mark">{LogoMarkSvg}</span>
+          众调AI生态服务平台
         </Link>
-
-        <DesktopNav />
-
-        <div className="sh-actions">
-          <Button theme="borderless" className="sh-login" onClick={handleLogin}>
-            登录
-          </Button>
-          <Button theme="solid" size="default" className="sh-cta" onClick={handleExperience}>
-            立即体验
-          </Button>
-          <Button
-            theme="borderless"
-            icon={<IconMenu />}
-            className="sh-burger"
-            aria-label="打开菜单"
-            onClick={() => setMobileOpen(true)}
-          />
+        <nav className="nav-links">
+          <div className="nav-item has-dropdown">
+            <Link to="/" className="nav-trigger nav-active">
+              首页
+            </Link>
+            <div className="nav-dropdown" role="menu" aria-label="首页子菜单">
+              {NAV_DROPDOWN_ITEMS.map((item) => (
+                <Link key={item.path} to={item.path} className="dd-item" role="menuitem">
+                  <span className="dd-icon">{item.icon}</span>
+                  <span className="dd-text">
+                    <span className="dd-title">{item.title}</span>
+                    <span className="dd-desc">{item.desc}</span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <Link to="/agent-platform">智能体开发平台</Link>
+          <Link to="/models">大模型广场</Link>
+          <Link to="/pricing">定价</Link>
+          <a
+            href="#solutions"
+            onClick={(e) => {
+              handleAnchor(e, '#solutions');
+            }}
+          >
+            行业解决方案
+          </a>
+          <Link to="/docs">文档</Link>
+        </nav>
+        <div className="nav-cta">
+          <a href="#auth" className="btn btn-ghost">
+            注册/登录
+          </a>
         </div>
       </div>
-
-      <SideSheet
-        visible={mobileOpen}
-        onCancel={() => setMobileOpen(false)}
-        placement="left"
-        width={300}
-        headerStyle={{ display: 'none' }}
-        bodyStyle={{ padding: '16px' }}
-      >
-        <div className="sh-mobile-nav">
-          {NAV_ITEMS.map((item) =>
-            item.children ? (
-              <div key={item.path} className="sh-mobile-group">
-                <div className="sh-mobile-group-title">{item.label}</div>
-                {item.children.map((child) => (
-                  <Link
-                    key={child.path}
-                    to={child.path}
-                    className="sh-mobile-link"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {child.label}
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <Link
-                key={item.path}
-                to={item.path}
-                className="sh-mobile-link sh-mobile-link--top"
-                onClick={() => setMobileOpen(false)}
-              >
-                {item.label}
-              </Link>
-            )
-          )}
-          <Button block theme="solid" className="sh-mobile-cta" onClick={handleExperience}>
-            立即体验
-          </Button>
-        </div>
-      </SideSheet>
     </header>
   );
 };

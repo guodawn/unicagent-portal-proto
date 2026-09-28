@@ -8,6 +8,17 @@ const HomePage = lazy(() =>
   import('./pages/home/HomePage').then((m) => ({ default: m.HomePage }))
 );
 
+// 「首页」下拉的 3 个二级服务页（docs/07 §1 路由映射）
+const LlmGatewayPage = lazy(() =>
+  import('./pages/services/LlmGatewayPage').then((m) => ({ default: m.LlmGatewayPage }))
+);
+const ComputePage = lazy(() =>
+  import('./pages/services/ComputePage').then((m) => ({ default: m.ComputePage }))
+);
+const PrivateDeployPage = lazy(() =>
+  import('./pages/services/PrivateDeployPage').then((m) => ({ default: m.PrivateDeployPage }))
+);
+
 function RouteLoading() {
   return (
     <div className="route-loading" aria-busy="true">
@@ -18,7 +29,7 @@ function RouteLoading() {
 
 const withSuspense = (node: React.ReactNode) => <Suspense fallback={<RouteLoading />}>{node}</Suspense>;
 
-/** 占位页路由（见 docs/03 路由表，V0.1 仅首页完整实现） */
+/** 占位页路由（见 docs/03 路由表） */
 const placeholder = (title: string): RouteObject => ({
   element: <PlaceholderPage title={title} />,
 });
@@ -29,6 +40,11 @@ export const PORTAL_ROUTES: RouteObject[] = [
     element: <SiteLayout />,
     children: [
       { index: true, element: withSuspense(<HomePage />) },
+
+      // 供给侧 / 政企营销页（原型还原）
+      { path: 'services/gateway', element: withSuspense(<LlmGatewayPage />) },
+      { path: 'services/compute', element: withSuspense(<ComputePage />) },
+      { path: 'services/private-deployment', element: withSuspense(<PrivateDeployPage />) },
 
       // 2. 智能体开发平台
       { path: 'agent-platform', ...placeholder('智能体开发平台') },
@@ -49,11 +65,6 @@ export const PORTAL_ROUTES: RouteObject[] = [
       { path: 'solutions/power', ...placeholder('电力行业解决方案') },
       { path: 'solutions/energy', ...placeholder('能源行业解决方案') },
       { path: 'solutions/general', ...placeholder('通用行业解决方案') },
-
-      // 供给侧 / 政企营销页
-      { path: 'services/compute', ...placeholder('AI 算力运营服务') },
-      { path: 'services/gateway', ...placeholder('大模型服务网关') },
-      { path: 'services/private-deployment', ...placeholder('私有化部署服务平台') },
 
       // 6. 文档
       { path: 'docs', ...placeholder('文档中心') },

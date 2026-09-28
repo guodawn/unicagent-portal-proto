@@ -1,68 +1,73 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Toast } from '@douyinfe/semi-ui';
-import { BRAND, FOOTER_COLUMNS } from '@/mock/content';
+import { LogoMarkSvg } from '@/proto/data';
 
-/** 原型占位路径：点击提示而非跳转 404 */
-const TOAST_PATHS: Record<string, string> = {
-  '/login': '原型演示：登录功能待建设',
-  '/agreement': '原型演示：法务页面占位',
-  '/privacy': '原型演示：法务页面占位',
-};
+interface FootLink {
+  label: string;
+  to?: string;
+}
 
+interface FootCol {
+  title: string;
+  links: FootLink[];
+}
+
+/** 原型页脚三栏；有对应工程路由的接路由，其余保持原型占位 href="#" */
+const FOOT_COLS: FootCol[] = [
+  {
+    title: '核心平台服务',
+    links: [
+      { label: '智能体开发平台', to: '/agent-platform' },
+      { label: '大模型广场', to: '/models' },
+      { label: '算力调度' },
+      { label: '知识库引擎' },
+    ],
+  },
+  {
+    title: '模型与解决方案',
+    links: [{ label: '汽车行业方案' }, { label: '金融行业方案' }, { label: '电力行业方案' }, { label: '烟草行业方案' }],
+  },
+  {
+    title: '联系与服务',
+    links: [{ label: '预约演示' }, { label: '帮助文档', to: '/docs' }, { label: '合作生态' }, { label: '加入我们' }],
+  },
+];
+
+/** 原型版页脚（docs/07 §3.8）：渐变浅紫底 + 认证徽章 */
 export const SiteFooter: React.FC = () => {
   return (
-    <footer className="sf-footer" id="site-footer">
-      <div className="p-container">
-        <div className="sf-grid">
-          <div className="sf-brand">
-            <div className="sf-brand-row">
-              <div className="sh-logo-mark sh-logo-mark--sm">众</div>
-              <div className="sf-brand-name">
-                <strong>{BRAND.name}</strong>
-                <small>{BRAND.en}</small>
-              </div>
+    <footer className="foot">
+      <div className="wrap">
+        <div className="foot-grid">
+          <div>
+            <div className="f-logo">
+              <span className="mark">{LogoMarkSvg}</span>
+              众调AI生态服务平台
             </div>
-            <p className="sf-brand-desc">{BRAND.description}</p>
-            <div className="sf-contact" id="site-contact">
-              <div>商务合作：{BRAND.contactEmail}</div>
-              <div>让 AI 生产力触手可及</div>
-            </div>
+            <p className="f-desc">从算力、模型到智能体应用，为企业提供一站式的 AI 生态服务，让业务真正用得起、用得好 AI。</p>
           </div>
-
-          {FOOTER_COLUMNS.map((col) => (
-            <div key={col.title} className="sf-col">
-              <div className="sf-col-title">{col.title}</div>
-              <div className="sf-col-links">
-                {col.links.map((link) =>
-                  TOAST_PATHS[link.path] ? (
-                    <a
-                      key={link.label}
-                      role="link"
-                      tabIndex={0}
-                      className="sf-link"
-                      onClick={() => Toast.info(TOAST_PATHS[link.path])}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') Toast.info(TOAST_PATHS[link.path]);
-                      }}
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link key={link.label} to={link.path} className="sf-link">
-                      {link.label}
-                    </Link>
-                  )
-                )}
-              </div>
+          {FOOT_COLS.map((col) => (
+            <div className="f-col" key={col.title}>
+              <h5>{col.title}</h5>
+              {col.links.map((link) =>
+                link.to ? (
+                  <Link key={link.label} to={link.to}>
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a key={link.label} href="#">
+                    {link.label}
+                  </a>
+                )
+              )}
             </div>
           ))}
         </div>
-
-        <div className="sf-bottom">
-          <span>{BRAND.copyright}</span>
-          <span className="sf-icp">备案号占位（原型演示）</span>
-          <span className="sf-note">{BRAND.prototypeNote}</span>
+        <div className="foot-bottom">
+          <span>© 2026 众调AI生态服务平台 · 沪ICP备xxxxxxxx号</span>
+          <span className="cert">
+            <span className="seal">✓</span>信息系统安全等保三级认证
+          </span>
         </div>
       </div>
     </footer>
