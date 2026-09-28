@@ -305,6 +305,8 @@ export const LlmGatewayPage: React.FC = () => {
       </section>
 
       <div className="lg-cta">
+        <h2 className="reveal">让模型能力连接更多业务机会</h2>
+        <p className="reveal">如果您拥有模型或 Token 服务能力，希望拓展客户与行业场景，实现统一接入、灵活分发与透明结算，欢迎联系我们，共同开启持续增长的 AI 服务合作。</p>
         <div className="btn-cta-fx-wrap">
           <button className="btn btn-cta-fx">
             <span>我要合作</span>

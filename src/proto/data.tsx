@@ -237,40 +237,34 @@ export const SOLUTION_PANELS: SolutionPanel[] = [
 export interface Partner {
   n: string;
   e: string;
-  bg: string;
-  /** 原型内联 SVG 字符串，渲染时经 dangerouslySetInnerHTML 原样输出（保真） */
-  svg: string;
+  /** 真实品牌素材，来源见 public/logos/sources.json。 */
+  logo: string;
 }
 
 export const PARTNER_ROWS: Partner[][] = [
-  // 第 1 行 · 汽车
   [
-    { n: '比亚迪', e: 'BYD', bg: '#D32F2F', svg: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="9" width="26" height="14" rx="7" fill="white"/><text x="16" y="20" text-anchor="middle" fill="#D32F2F" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="9">BYD</text></svg>' },
-    { n: '长安汽车', e: 'CHANGAN AUTO', bg: '#0D2C6E', svg: '<svg viewBox="0 0 32 32"><path d="M6 9 L16 26 L26 9" stroke="white" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 9 L16 26" stroke="white" stroke-width="3.2" stroke-linecap="round"/></svg>' },
-    { n: '吉利汽车', e: 'GEELY AUTO', bg: '#0F4D8C', svg: '<svg viewBox="0 0 32 32"><polygon points="16,3 27,9 24,24 8,24 5,9" fill="white"/><polygon points="16,8 23,12 21,21 11,21 9,12" fill="#0F4D8C"/></svg>' },
-    { n: '上汽集团', e: 'SAIC MOTOR', bg: '#0F3D7C', svg: '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" fill="none" stroke="white" stroke-width="2.4"/><path d="M11 11 Q16 16 11 21 M21 11 Q16 16 21 21" stroke="white" stroke-width="2.4" fill="none"/></svg>' },
-    { n: '上汽大众', e: 'SAIC VOLKSWAGEN', bg: '#002F6C', svg: '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="white"/><path d="M9 10 L16 23 L23 10" stroke="#002F6C" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+    { n: '比亚迪', e: 'BYD', logo: '/logos/byd.png' },
+    { n: '长安汽车', e: 'CHANGAN AUTO', logo: '/logos/changan.svg' },
+    { n: '吉利汽车', e: 'GEELY AUTO', logo: '/logos/geely.svg' },
+    { n: '上汽集团', e: 'SAIC MOTOR', logo: '/logos/saic.png' },
+    { n: '上汽大众', e: 'SAIC VOLKSWAGEN', logo: '/logos/volkswagen.png' },
   ],
-  // 第 2 行 · 烟草 / 电力
   [
-    { n: '重庆烟草', e: 'CHONGQING TOBACCO', bg: '#1B5E20', svg: '<svg viewBox="0 0 32 32"><path d="M22 5 Q26 14 22 22 Q14 26 7 20 Q4 12 10 6 Q16 2 22 5 Z" fill="white"/><path d="M14 5 Q16 9 14 14" stroke="#1B5E20" stroke-width="1.4" fill="none"/></svg>' },
-    { n: '广西烟草', e: 'GUANGXI TOBACCO', bg: '#2E7D32', svg: '<svg viewBox="0 0 32 32"><path d="M10 5 Q4 14 8 22 Q14 27 22 24 Q27 16 24 8 Q18 3 10 5 Z" fill="white"/><path d="M14 6 Q11 12 14 18" stroke="#2E7D32" stroke-width="1.4" fill="none"/></svg>' },
-    { n: '国家电网', e: 'STATE GRID', bg: '#0D6E6E', svg: '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" fill="none" stroke="white" stroke-width="1.8"/><ellipse cx="16" cy="16" rx="11" ry="4.5" stroke="white" stroke-width="1.6" fill="none"/><ellipse cx="16" cy="16" rx="4.5" ry="11" stroke="white" stroke-width="1.6" fill="none"/><line x1="5" y1="16" x2="27" y2="16" stroke="white" stroke-width="1.6"/></svg>' },
-    { n: '中国南方电网', e: 'CSG', bg: '#0E2A6E', svg: '<svg viewBox="0 0 32 32"><path d="M19 4 L8 18 L15 18 L13 28 L24 14 L17 14 L19 4 Z" fill="#FFC107" stroke="white" stroke-width="0.6"/></svg>' },
-    { n: '山东电力', e: 'STATE GRID SD', bg: '#0F766E', svg: '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" fill="white"/><ellipse cx="16" cy="16" rx="11" ry="4.5" stroke="#0F766E" stroke-width="1.5" fill="none"/><ellipse cx="16" cy="16" rx="4.5" ry="11" stroke="#0F766E" stroke-width="1.5" fill="none"/><line x1="5" y1="16" x2="27" y2="16" stroke="#0F766E" stroke-width="1.5"/></svg>' },
+    { n: '重庆烟草', e: 'CHONGQING TOBACCO', logo: '/logos/tobacco.gif' },
+    { n: '广西烟草', e: 'GUANGXI TOBACCO', logo: '/logos/tobacco.gif' },
+    { n: '国家电网', e: 'STATE GRID', logo: '/logos/state-grid.svg' },
+    { n: '中国南方电网', e: 'CSG', logo: '/logos/csg.png' },
+    { n: '山东电力', e: 'STATE GRID SD', logo: '/logos/state-grid.svg' },
   ],
-  // 第 3 行 · 高校 / 科研 / 医疗
   [
-    { n: '同济大学', e: 'TONGJI UNIVERSITY', bg: '#1B5E20', svg: '<svg viewBox="0 0 32 32"><path d="M9 9 L23 9 M16 9 L16 24 M11 24 L21 24" stroke="white" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>' },
-    { n: '复旦大学', e: 'FUDAN UNIVERSITY', bg: '#B71C1C', svg: '<svg viewBox="0 0 32 32"><rect x="6" y="8" width="20" height="16" rx="1.5" fill="white"/><line x1="16" y1="8" x2="16" y2="24" stroke="#B71C1C" stroke-width="1.6"/><circle cx="11" cy="13" r="0.9" fill="#B71C1C"/><circle cx="21" cy="13" r="0.9" fill="#B71C1C"/><circle cx="11" cy="19" r="0.9" fill="#B71C1C"/><circle cx="21" cy="19" r="0.9" fill="#B71C1C"/></svg>' },
-    { n: '上海交通大学', e: 'SJTU', bg: '#B71C1C', svg: '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="white"/><path d="M10 10 L10 22 Q10 24 12 24 L20 24 Q22 24 22 22 L22 10" stroke="#B71C1C" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>' },
-    { n: '中科院声学所', e: 'IACAS', bg: '#1565C0', svg: '<svg viewBox="0 0 32 32"><path d="M16 5 L24 24 L8 24 Z" stroke="white" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 19 L21 19" stroke="white" stroke-width="2.8" stroke-linecap="round"/></svg>' },
-    { n: '罗氏', e: 'ROCHE', bg: '#0D47A1', svg: '<svg viewBox="0 0 32 32"><polygon points="16,3 27,9 27,23 16,29 5,23 5,9" fill="white"/><text x="16" y="20" text-anchor="middle" fill="#0D47A1" font-family="Arial,sans-serif" font-weight="800" font-size="6.5">Roche</text></svg>' },
-    { n: '宁德时代', e: 'CATL', bg: '#1976D2', svg: '<svg viewBox="0 0 32 32"><path d="M6 8 Q12 4 20 6 Q26 8 26 16 Q26 24 18 26 Q10 26 6 22 Q4 14 6 8 Z" fill="white"/><path d="M10 22 L14 14 L17 18 L22 10" stroke="#1976D2" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+    { n: '同济大学', e: 'TONGJI UNIVERSITY', logo: '/logos/tongji.svg' },
+    { n: '复旦大学', e: 'FUDAN UNIVERSITY', logo: '/logos/fudan.svg' },
+    { n: '上海交通大学', e: 'SJTU', logo: '/logos/sjtu.png' },
+    { n: '中科院声学所', e: 'IACAS', logo: '/logos/ioa.png' },
+    { n: '罗氏', e: 'ROCHE', logo: '/logos/roche.png' },
+    { n: '宁德时代', e: 'CATL', logo: '/logos/catl.svg' },
   ],
 ];
-
-/* ====================== 客户评价（极简三栏） ====================== */
 
 export interface Review {
   title: string;

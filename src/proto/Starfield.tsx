@@ -12,7 +12,7 @@ interface StarPoint {
 /**
  * 原型英雄区粒子星空（docs/07 §6）：
  * 粒子数 min(90, floor(W/14))，连线阈值 d²<14000，
- * 粒子/连线均为 rgba(124,58,237,α)，参数与原型逐字一致。
+ * 以时间驱动连接点缓慢漂移，让背景连线持续平滑变化。
  */
 export const Starfield: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -27,26 +27,33 @@ export const Starfield: React.FC = () => {
     let H = 0;
     let pts: StarPoint[] = [];
     let raf = 0;
-
+    let lastTime: number | undefined;
     const initStars = () => {
       W = cv.width = cv.offsetWidth;
       H = cv.height = cv.offsetHeight;
       const n = Math.min(90, Math.floor(W / 14));
-      pts = Array.from({ length: n }, () => ({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        r: Math.random() * 1.6 + 0.4,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        a: Math.random() * 0.5 + 0.3,
-      }));
+      pts = Array.from({ length: n }, () => {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 3 + Math.random() * 3;
+        return {
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.6 + 0.4,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          a: Math.random() * 0.5 + 0.3,
+        };
+      });
     };
 
-    const draw = () => {
+    const draw = (time: number) => {
+      // 秒为单位，并限制恢复后台页面后的时间差，避免突然跳动。
+      const elapsed = lastTime === undefined ? 0 : Math.min((time - lastTime) / 1000, 0.05);
+      lastTime = time;
       ctx.clearRect(0, 0, W, H);
       for (const p of pts) {
-        p.x += p.vx;
-        p.y += p.vy;
+        p.x += p.vx * elapsed;
+        p.y += p.vy * elapsed;
         if (p.x < 0 || p.x > W) p.vx *= -1;
         if (p.y < 0 || p.y > H) p.vy *= -1;
         ctx.beginPath();
@@ -73,12 +80,21 @@ export const Starfield: React.FC = () => {
       raf = requestAnimationFrame(draw);
     };
 
-    initStars();
-    draw();
-    window.addEventListener('resize', initStars);
+    const restart = () => {
+      cancelAnimationFrame(raf);
+      lastTime = undefined;
+      draw(performance.now());
+    };
+    const resize = () => {
+      initStars();
+      restart();
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener('resize', initStars);
+      window.removeEventListener('resize', resize);
     };
   }, []);
 

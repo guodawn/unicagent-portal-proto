@@ -26,12 +26,6 @@ export const HomePage: React.FC = () => {
           className="aurora aurora-1"
           style={{ width: 380, height: 380, background: 'radial-gradient(circle,#F0ABFC,transparent 70%)', top: '30%', right: '20%', opacity: 0.4 }}
         />
-        {/* 装饰光环 */}
-        <div className="deco-ring ring-spin" style={{ width: 340, height: 340, top: '60%', left: -100 }} />
-        <div
-          className="deco-ring ring-pulse"
-          style={{ width: 240, height: 240, top: '8%', right: '6%', borderColor: 'rgba(6,182,212,.22)' }}
-        />
         <div className="wrap hero-inner">
           <div className="tag">
             <span className="dot" />
@@ -139,14 +133,17 @@ export const HomePage: React.FC = () => {
                 <div
                   className={`marquee-track${i === 1 ? ' marquee-track-reverse' : ''}${i === 2 ? ' marquee-track-slow' : ''}`}
                 >
-                  {/* 原型：每行卡片双份填充实现无缝循环 */}
-                  {[...row, ...row].map((pt, j) => (
-                    <div className="partner-card" key={j}>
-                      <div className="logo" style={{ background: pt.bg }} dangerouslySetInnerHTML={{ __html: pt.svg }} />
-                      <div className="ptxt">
-                        <div className="pname">{pt.n}</div>
-                        <div className="pen">{pt.e}</div>
-                      </div>
+                  {[0, 1].map((copy) => (
+                    <div className="marquee-group" key={copy} aria-hidden={copy === 1}>
+                      {row.map((pt) => (
+                        <div className="partner-card" key={pt.e}>
+                          <div className="logo"><img src={pt.logo} alt={`${pt.n} LOGO`} width="64" height="48" /></div>
+                          <div className="ptxt">
+                            <div className="pname">{pt.n}</div>
+                            <div className="pen">{pt.e}</div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>

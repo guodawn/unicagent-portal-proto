@@ -56,7 +56,6 @@ export const ComputePage: React.FC = () => {
                     <div className="cs-title">AI 服务与客户场景</div>
                     <div className="cs-desc">模型 API · 行业智能体 · 企业应用 · 园区服务</div>
                   </div>
-                  <span className="cs-tag">+</span>
                 </div>
 
                 <div className="cp-step-arrow">
@@ -73,7 +72,6 @@ export const ComputePage: React.FC = () => {
                     <div className="cs-title">AI 服务交付与收益结算</div>
                     <div className="cs-desc">客户服务 · 调用消费 · 收益分成 · 经营分析</div>
                   </div>
-                  <span className="cs-tag">+</span>
                 </div>
 
                 <div className="cp-step-arrow">
@@ -91,7 +89,6 @@ export const ComputePage: React.FC = () => {
                     <div className="cs-title">Token 服务运营</div>
                     <div className="cs-desc">服务封装 · 调用计量 · 套餐管理 · 账单结算</div>
                   </div>
-                  <span className="cs-tag">+</span>
                 </div>
 
                 <div className="cp-step-arrow">
@@ -109,7 +106,6 @@ export const ComputePage: React.FC = () => {
                     <div className="cs-title">模型部署与推理服务</div>
                     <div className="cs-desc">模型适配 · 推理部署 · 弹性调度 · 服务监控</div>
                   </div>
-                  <span className="cs-tag">+</span>
                 </div>
 
                 <div className="cp-step-arrow">
@@ -127,7 +123,6 @@ export const ComputePage: React.FC = () => {
                     <div className="cs-title">算力资源接入</div>
                     <div className="cs-desc">GPU / NPU · 智算中心 · 云端与本地集群 · 异构资源池</div>
                   </div>
-                  <span className="cs-tag">+</span>
                 </div>
               </div>
             </div>

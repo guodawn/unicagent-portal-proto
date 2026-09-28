@@ -212,6 +212,8 @@ a {
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
   }
 
   /* 循环动画直接关闭，保证可读性 */
@@ -228,7 +230,4 @@ a {
     animation: none !important;
   }
 
-  .marquee-track {
-    transform: none !important;
-  }
 }
