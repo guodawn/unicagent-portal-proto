@@ -33,6 +33,14 @@ const SuitePage = lazy(() =>
   import('./pages/agent-platform/SuitePage').then((m) => ({ default: m.SuitePage }))
 );
 
+// 4. 定价（订阅套餐 / API充值，头部「定价」气泡菜单入口）
+const PlansPage = lazy(() =>
+  import('./pages/pricing/PlansPage').then((m) => ({ default: m.PlansPage }))
+);
+const TopupPage = lazy(() =>
+  import('./pages/pricing/TopupPage').then((m) => ({ default: m.TopupPage }))
+);
+
 // 5. 行业解决方案（4 个行业页，头部「行业解决方案」气泡菜单入口）
 const AutoSolutionPage = lazy(() =>
   import('./pages/solutions/AutoSolutionPage').then((m) => ({ default: m.AutoSolutionPage }))
@@ -84,9 +92,9 @@ export const PORTAL_ROUTES: RouteObject[] = [
       { path: 'models', ...placeholder('大模型广场') },
       { path: 'models/playground', ...placeholder('大模型体验') },
 
-      // 4. 定价
-      { path: 'pricing', ...placeholder('套餐购买') },
-      { path: 'pricing/topup', ...placeholder('API 充值') },
+      // 4. 定价（订阅套餐 / API充值）
+      { path: 'pricing', element: withSuspense(<PlansPage />) },
+      { path: 'pricing/topup', element: withSuspense(<TopupPage />) },
 
       // 5. 行业解决方案（4 个行业页 + 通用占位）
       { path: 'solutions/auto', element: withSuspense(<AutoSolutionPage />) },

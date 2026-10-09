@@ -167,6 +167,32 @@ export const SOLUTION_NAV_ITEMS: NavDropdownItem[] = [
   },
 ];
 
+/* ====================== 「定价」气泡菜单（订阅套餐 / API充值） ====================== */
+
+export const PRICING_NAV_ITEMS: NavDropdownItem[] = [
+  {
+    path: '/pricing',
+    title: '订阅套餐',
+    desc: '主套餐 + 套餐资源包，按周期订阅',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="5" width="18" height="15" rx="2.5" />
+        <path d="M3 10h18M7 15h5" />
+      </svg>
+    ),
+  },
+  {
+    path: '/pricing/topup',
+    title: 'API充值',
+    desc: '按量使用模型能力，积分长期有效',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M13 2L4 14h6l-1 8 9-12h-6z" />
+      </svg>
+    ),
+  },
+];
+
 /* ====================== 行业解决方案（首页 Tabs） ====================== */
 
 export interface SolutionFeature {

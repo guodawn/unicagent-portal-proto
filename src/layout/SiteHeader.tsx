@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router';
-import { LogoMarkSvg, NAV_DROPDOWN_ITEMS, AGENT_NAV_ITEMS, SOLUTION_NAV_ITEMS, type NavDropdownItem } from '@/proto/data';
+import { LogoMarkSvg, NAV_DROPDOWN_ITEMS, AGENT_NAV_ITEMS, SOLUTION_NAV_ITEMS, PRICING_NAV_ITEMS, type NavDropdownItem } from '@/proto/data';
 
 /**
  * 一级 Tab 气泡菜单：点击 Tab 弹出气泡卡片，选中任一项（或点击外部 / Esc / 路由变化）后收起。
@@ -69,7 +69,7 @@ function NavMenuTab({
 
 /**
  * 原型版顶部导航（docs/07 §3.1）：
- * sticky 毛玻璃 + 三个一级 Tab 气泡菜单（首页服务入口 / 产品与平台能力 / 行业解决方案）。
+ * sticky 毛玻璃 + 四个一级 Tab 气泡菜单（首页服务入口 / 产品与平台能力 / 行业解决方案 / 定价）。
  * 选中气泡内任一项后气泡收起（NavMenuTab 内已处理）。
  */
 export const SiteHeader: React.FC = () => {
@@ -101,8 +101,13 @@ export const SiteHeader: React.FC = () => {
             active={pathname.startsWith('/solutions')}
             ariaLabel="行业解决方案菜单"
           />
+          <NavMenuTab
+            label="定价"
+            items={PRICING_NAV_ITEMS}
+            active={pathname.startsWith('/pricing')}
+            ariaLabel="定价菜单"
+          />
           <Link to="/models">大模型广场</Link>
-          <Link to="/pricing">定价</Link>
           <Link to="/docs">文档</Link>
         </nav>
         <div className="nav-cta">
