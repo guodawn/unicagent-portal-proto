@@ -107,25 +107,27 @@ export const OrderModal: React.FC<{
               <div><label>有效期</label><strong>{CYCLE_MONTHS_TEXT[cycle]}</strong></div>
             </div>
           ) : (
-            <div className="pri-order__bundle">
-              <div className="pri-order__qty">
-                <span>购买数量</span>
-                <div className="pri-qty">
-                  <button type="button" onClick={() => setQuantity((q) => Math.max(1, q - 1))} disabled={quantity <= 1}>−</button>
-                  <output>{quantity}</output>
-                  <button type="button" onClick={() => setQuantity((q) => q + 1)}>＋</button>
+            <>
+              <div className="pri-order__bgrid">
+                <div className="pri-order__qty">
+                  <span>购买数量</span>
+                  <div className="pri-qty">
+                    <button type="button" onClick={() => setQuantity((q) => Math.max(1, q - 1))} disabled={quantity <= 1}>−</button>
+                    <output>{quantity}</output>
+                    <button type="button" onClick={() => setQuantity((q) => q + 1)}>＋</button>
+                  </div>
                 </div>
-              </div>
-              <div className="pri-order__total">
-                <span>合计额度</span>
-                <strong>{totalCredits.toLocaleString()}积分</strong>
+                <div className="pri-order__total">
+                  <span>合计额度</span>
+                  <strong>{totalCredits.toLocaleString()}积分</strong>
+                </div>
               </div>
               <p className="pri-order__notice">
                 {notice?.needsAcknowledgement
                   ? `资源包有效至 ${formatDate(notice.bundleExpiry)}；主套餐于 ${notice.planExpiry ? formatDate(notice.planExpiry) : ''} 到期后暂停使用，续订后未到期额度自动恢复。资源包有效期不顺延。`
                   : '资源包自支付成功起独立计时，仅在主套餐有效期间可使用。资源包不支持自动续费。'}
               </p>
-            </div>
+            </>
           )}
 
           {isPlan && upgrade && (
@@ -289,7 +291,7 @@ export const PaymentView: React.FC<{
             <button type="button" className="btn btn-ghost" onClick={onCancel}>取消订单</button>
           </div>
           <button type="button" className="pri-paypage__sim" onClick={simulateCallback}>
-            模拟支付回调（原型演示）
+            原型演示：<u>模拟支付回调</u>
           </button>
         </div>
       </div>

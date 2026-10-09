@@ -24,7 +24,7 @@ import {
   usePlanStore,
   daysUntil,
 } from './planStore';
-import { BillingToggle, PriPage, PriFaq, PriSuccessModal, PriTabs, priToast } from './shared';
+import { BillingToggle, PriPage, PriFaq, PriSuccessModal, priToast } from './shared';
 import { OrderModal, PaymentView, type OrderTarget } from './OrderFlow';
 
 /**
@@ -124,7 +124,6 @@ export const PlansPage: React.FC = () => {
           <h1>{PRICING_HERO.subscription.title}</h1>
           <p>{PRICING_HERO.subscription.lead}</p>
           <div className="pri-hero__action">
-            <PriTabs active="subscription" />
             <BillingToggle cycle={cycle} onChange={setCycle} />
           </div>
         </div>
@@ -319,14 +318,16 @@ export const PlansPage: React.FC = () => {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ（左标题 + 右列表，与上方内容同宽） */}
       <section className="pri-sec pri-sec--soft">
         <div className="wrap">
-          <div className="pri-faqhead">
-            <h2>常见问题</h2>
-            <p>了解套餐订阅、资源包使用与权益生效规则。</p>
+          <div className="pri-faqlayout">
+            <div className="pri-faqhead">
+              <h2>常见问题</h2>
+              <p>了解套餐订阅、资源包使用与权益生效规则。</p>
+            </div>
+            <PriFaq items={SUBSCRIPTION_FAQS} />
           </div>
-          <PriFaq items={SUBSCRIPTION_FAQS} />
         </div>
       </section>
 

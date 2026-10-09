@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router';
 import { useProtoReveal } from '@/proto/useProtoReveal';
 import './pricing.css';
 
@@ -30,29 +29,6 @@ export const PriToastHost: React.FC = () => {
   if (!msg) return null;
   return <div className="pri-toast" role="status">{msg}</div>;
 };
-
-/* ====================== 页签（订阅套餐 / API充值） ====================== */
-
-export const PriTabs: React.FC<{ active: 'subscription' | 'api' }> = ({ active }) => (
-  <div className="pri-tabs" role="tablist" aria-label="定价方式">
-    <Link
-      to="/pricing"
-      role="tab"
-      aria-selected={active === 'subscription'}
-      className={active === 'subscription' ? 'is-active' : ''}
-    >
-      订阅套餐
-    </Link>
-    <Link
-      to="/pricing/topup"
-      role="tab"
-      aria-selected={active === 'api'}
-      className={active === 'api' ? 'is-active' : ''}
-    >
-      API充值
-    </Link>
-  </div>
-);
 
 /* ====================== 计费周期切换 ====================== */
 
