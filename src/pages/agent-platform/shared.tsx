@@ -269,14 +269,12 @@ export const AgpCta: React.FC<{ title: string; lead: string; primary: HeroAction
     a.to ? <Link to={a.to} className={`btn ${cls}`}>{a.label}</Link> : <a href={a.href} className={`btn ${cls}`}>{a.label}</a>;
   return (
     <section className="agp-cta">
-      <div className="wrap">
-        <div className="agp-cta__card reveal">
-          <h2>{title}</h2>
-          <p>{lead}</p>
-          <div className="agp-cta__actions">
-            {renderAction(primary, 'btn-primary')}
-            {secondary && renderAction(secondary, 'btn-ghost')}
-          </div>
+      <div className="wrap agp-cta__in reveal">
+        <h2>{title}</h2>
+        <p>{lead}</p>
+        <div className="agp-cta__actions">
+          {renderAction(primary, 'btn-primary')}
+          {secondary && renderAction(secondary, 'btn-ghost')}
         </div>
       </div>
     </section>

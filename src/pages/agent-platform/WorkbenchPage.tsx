@@ -25,8 +25,9 @@ function ConfigArt({ art }: { art: ConfigArt }) {
           ))}
         </div>
         <span className="agp-cfg-sub">参数</span>
-        <div className="agp-cfg-slider"><small>温度</small><span className="track" style={{ '--fill': '38%' } as React.CSSProperties} /><em>0.7</em></div>
-        <div className="agp-cfg-slider"><small>最大输出</small><span className="track" style={{ '--fill': '66%' } as React.CSSProperties} /><em>4096</em></div>
+        <div className="agp-cfg-slider"><small>温度<span>Temperature</span></small><span className="track" style={{ '--fill': '38%' } as React.CSSProperties} /><em>0.7</em></div>
+        <div className="agp-cfg-slider"><small>采样范围<span>Top P</span></small><span className="track" style={{ '--fill': '86%' } as React.CSSProperties} /><em>0.9</em></div>
+        <div className="agp-cfg-slider"><small>最大输出<span>Max Tokens</span></small><span className="track" style={{ '--fill': '66%' } as React.CSSProperties} /><em>4096</em></div>
       </>
     );
   }
@@ -35,7 +36,7 @@ function ConfigArt({ art }: { art: ConfigArt }) {
       <>
         <div className="agp-cfg-rolehead">
           <i><AgpIcon name="person" /></i>
-          <div className="agp-lines"><i style={{ width: '34%', height: 10 }} /><i style={{ width: '58%' }} /></div>
+          <div className="agp-lines"><i style={{ width: '34%', height: 11 }} /><i style={{ width: '58%', height: 8 }} /></div>
         </div>
         <span className="agp-cfg-sub">指令</span>
         <div className="agp-cfg-prompt">

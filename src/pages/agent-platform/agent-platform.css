@@ -513,18 +513,21 @@
   background:linear-gradient(135deg,var(--purple),var(--indigo));
   box-shadow:0 6px 16px rgba(101,73,237,.28);
 }
-/* 配置面板小节标题 */
+/* 配置面板小节标题（与「模型选择」胶囊标签同款） */
 .agp-cfg-sub{
-  font-size:11.5px;font-weight:700;letter-spacing:2px;color:#A99BE4;margin:4px 0 -4px;
+  align-self:flex-start;
+  font-size:11.5px;font-weight:700;letter-spacing:1.5px;color:var(--purple-2);
+  background:#F1ECFF;border-radius:999px;padding:4px 12px;margin:2px 0 -2px;
   animation:agpPaneIn .45s ease both;
 }
-/* 参数滑杆 */
+/* 参数滑杆（参考控制台参数面板：中英文名 / 滑杆 / 数值框） */
 .agp-cfg-slider{
-  display:grid;grid-template-columns:76px 1fr 44px;gap:14px;align-items:center;
-  background:#fff;border:1px solid #EBE8F7;border-radius:12px;padding:13px 16px;
+  display:grid;grid-template-columns:96px 1fr 62px;gap:14px;align-items:center;
+  background:#fff;border:1px solid #EBE8F7;border-radius:12px;padding:12px 16px;
   animation:agpPaneIn .45s ease both;
 }
-.agp-cfg-slider small{font-size:12px;color:var(--gray);font-weight:600}
+.agp-cfg-slider small{display:flex;flex-direction:column;gap:2px;font-size:12.5px;color:#33294F;font-weight:650;line-height:1.2}
+.agp-cfg-slider small span{font-size:10px;color:#A8A3C0;font-weight:500;letter-spacing:.3px}
 .agp-cfg-slider .track{
   position:relative;height:6px;border-radius:4px;background:#EFECFA;
 }
@@ -539,8 +542,10 @@
   transform:translate(-50%,-50%);transition:left .3s ease;
 }
 .agp-cfg-slider em{
-  font-style:normal;font-size:11.5px;font-weight:700;color:var(--purple-2);
-  background:#F1ECFF;border-radius:7px;padding:4px 0;text-align:center;
+  font-style:normal;font-size:12.5px;font-weight:700;color:#3B3653;
+  background:#fff;border:1px solid #E4E0F3;border-radius:8px;
+  padding:6px 0;text-align:center;
+  font-variant-numeric:tabular-nums;
 }
 /* 角色与指令 */
 .agp-cfg-rolehead{
@@ -548,12 +553,12 @@
   background:#fff;border:1px solid #EBE8F7;border-radius:12px;padding:13px 16px;
   animation:agpPaneIn .45s ease both;
 }
-.agp-cfg-rolehead i{
+.agp-cfg-rolehead>i{
   width:38px;height:38px;border-radius:50%;flex-shrink:0;
   background:linear-gradient(135deg,var(--purple),var(--indigo));color:#fff;
   display:flex;align-items:center;justify-content:center;
 }
-.agp-cfg-rolehead i .agp-svg{width:19px;height:19px}
+.agp-cfg-rolehead>i .agp-svg{width:19px;height:19px}
 .agp-cfg-rolehead .agp-lines{flex:1}
 .agp-cfg-prompt{
   border:1px dashed #D9D2F0;border-radius:12px;background:#FBFAFF;
@@ -568,12 +573,12 @@
   animation:agpPaneIn .45s ease both;transition:border-color .25s ease,transform .25s ease;
 }
 .agp-cfg-doc:hover{border-color:#D9CDF7;transform:translateX(3px)}
-.agp-cfg-doc i{
+.agp-cfg-doc>i{
   width:38px;height:38px;border-radius:10px;flex-shrink:0;
   background:linear-gradient(135deg,#F3EEFF,#E4E7FF);color:var(--purple);
   display:flex;align-items:center;justify-content:center;
 }
-.agp-cfg-doc i .agp-svg{width:18px;height:18px}
+.agp-cfg-doc>i .agp-svg{width:18px;height:18px}
 .agp-cfg-doc .agp-lines{display:flex;flex-direction:column;gap:6px}
 .agp-cfg-doc .agp-lines i{height:8px}
 .agp-cfg-doc b{
@@ -670,7 +675,7 @@
 .agp-tl-item p{font-size:13.5px;color:var(--gray);line-height:1.7;margin:0;max-width:560px}
 
 /* ============ 套件：编号接入方式 ============ */
-.agp-ways{display:flex;flex-direction:column;gap:0;max-width:920px;margin:0 auto}
+.agp-ways{display:flex;flex-direction:column;gap:0}
 .agp-way{
   position:relative;display:grid;grid-template-columns:88px 56px 1fr auto;gap:20px;
   align-items:center;padding:26px 22px;
@@ -786,7 +791,7 @@
 .agp-integr__note p{font-size:13.5px;color:var(--gray);line-height:1.75;margin:0}
 
 /* ============ 套件：开发资源 ============ */
-.agp-res-list{display:flex;flex-direction:column;max-width:860px;margin:0 auto}
+.agp-res-list{display:flex;flex-direction:column}
 .agp-res{
   display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:center;
   padding:22px 20px;border-radius:16px;
@@ -885,29 +890,16 @@
   border:1px solid #BCEBDA;
 }
 
-/* ============ CTA（白底卡片式，避免大面积主题色） ============ */
-.agp-cta{padding:80px 0;background:#fff}
-.agp-cta__card{
-  position:relative;overflow:hidden;text-align:center;
-  max-width:860px;margin:0 auto;
-  border:1px solid #E6DFF9;border-radius:26px;background:#fff;
-  padding:56px 44px 52px;
-  box-shadow:0 12px 36px rgba(43,33,99,.08);
-}
-.agp-cta__card::before{
+/* ============ CTA（无框居中段落，与上方内容同宽） ============ */
+.agp-cta{position:relative;padding:72px 0;background:#fff;overflow:hidden}
+.agp-cta::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(72% 110% at 50% -24%,#F1ECFF 0%,rgba(241,236,255,0) 62%);
+  background:radial-gradient(46% 90% at 50% 100%,rgba(124,58,237,.07) 0%,rgba(124,58,237,0) 70%);
 }
-.agp-cta__card::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:radial-gradient(circle,rgba(124,58,237,.12) 1px,transparent 1.2px);
-  background-size:20px 20px;
-  -webkit-mask-image:radial-gradient(70% 90% at 50% 0%,#000 0%,transparent 76%);
-  mask-image:radial-gradient(70% 90% at 50% 0%,#000 0%,transparent 76%);
-}
-.agp-cta__card h2{position:relative;z-index:1;font-size:30px;font-weight:800;color:#1B1636;letter-spacing:-.4px;line-height:1.35;margin:0 0 12px}
-.agp-cta__card p{position:relative;z-index:1;font-size:15.5px;color:var(--gray);line-height:1.7;margin:0 0 30px}
-.agp-cta__actions{position:relative;z-index:1;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.agp-cta__in{position:relative;z-index:1;text-align:center;max-width:680px;margin:0 auto}
+.agp-cta__in h2{font-size:30px;font-weight:800;color:#1B1636;letter-spacing:-.4px;line-height:1.35;margin:0 0 12px}
+.agp-cta__in p{font-size:15.5px;color:var(--gray);line-height:1.7;margin:0 0 30px}
+.agp-cta__actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
 .agp-cta__actions .btn{padding:12px 26px;font-size:15px}
 
 /* ============ 交互统一：可点击卡片按压反馈 ============ */
@@ -916,6 +908,15 @@
 .agp-pipeline__node:active,.agp-bridge__panel:active,.agp-mode__panel:active{transform:translateY(-1px)}
 .agp-way:active,.agp-res:active{transform:translateX(2px)}
 .agp-tpl{cursor:pointer}
+
+/* ============ 门户规范细节 ============ */
+/* 锚点跳转预留吸顶导航高度，避免标题被遮挡 */
+.agp-sec[id],[id="agp-cta"]{scroll-margin-top:84px}
+/* 键盘焦点可见 */
+.agp .btn:focus-visible,
+.agp a:focus-visible{
+  outline:2px solid var(--purple);outline-offset:3px;border-radius:8px;
+}
 
 /* ============ 响应式 ============ */
 @media (max-width:1020px){
