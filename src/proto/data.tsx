@@ -67,6 +67,58 @@ export const NAV_DROPDOWN_ITEMS: NavDropdownItem[] = [
   },
 ];
 
+/* ====================== 「产品与平台能力」气泡菜单（4 个产品页入口） ====================== */
+
+export const AGENT_NAV_ITEMS: NavDropdownItem[] = [
+  {
+    path: '/agent-platform',
+    title: '平台总览',
+    desc: '选择适合你的 AI 使用方式',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
+        <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
+        <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
+        <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
+      </svg>
+    ),
+  },
+  {
+    path: '/agent-platform/digital-employee',
+    title: '数字员工平台',
+    desc: '面向办公使用者',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="8" r="3.5" />
+        <path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" />
+      </svg>
+    ),
+  },
+  {
+    path: '/agent-platform/workbench',
+    title: '智能体工作台',
+    desc: '面向业务人员与应用搭建者',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="5" cy="6" r="2" />
+        <circle cx="19" cy="6" r="2" />
+        <circle cx="12" cy="18" r="2" />
+        <path d="M7 6h10M6.5 7.8L10.8 16M17.5 7.8L13.2 16" />
+      </svg>
+    ),
+  },
+  {
+    path: '/agent-platform/suite',
+    title: '智能体开发套件',
+    desc: '面向开发人员与技术团队',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 6l-5 6 5 6M16 6l5 6-5 6M13.5 4l-3 16" />
+      </svg>
+    ),
+  },
+];
+
 /* ====================== 行业解决方案（首页 Tabs） ====================== */
 
 export interface SolutionFeature {

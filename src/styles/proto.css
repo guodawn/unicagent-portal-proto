@@ -41,17 +41,23 @@
   }
   .logo .mark svg{width:20px;height:20px}
   .nav-links{display:flex;gap:30px;font-size:15px;color:#374151;align-items:center}
-  .nav-links > a, .nav-links .nav-trigger{position:relative;padding:6px 0;color:#374151;cursor:pointer;transition:color .25s;display:inline-block}
-  .nav-links > a:hover, .nav-links .nav-trigger:hover, .nav-links .nav-active{color:var(--purple)}
+  .nav-links > a, .nav-links .nav-trigger{position:relative;padding:6px 0;color:#374151;cursor:pointer;transition:color .25s;display:inline-flex;align-items:center;gap:5px}
+  .nav-links button.nav-trigger{background:none;border:none;font:inherit;font-size:inherit;font-weight:inherit;line-height:inherit}
+  .nav-links > a:hover, .nav-links .nav-trigger:hover, .nav-active{color:var(--purple)}
   .nav-item{position:relative}
   .nav-item .nav-trigger::before{
     content:"";position:absolute;left:-14px;right:-14px;top:-2px;bottom:-22px;z-index:60;
   }
+  .nav-caret{
+    width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;
+    transform:rotate(45deg) translateY(-1px);opacity:.55;transition:transform .25s ease;
+  }
+  .nav-item.is-open .nav-caret{transform:rotate(-135deg) translateY(-2px);opacity:1}
   .nav-dropdown{
     position:absolute;top:calc(100% + 8px);left:-16px;min-width:308px;
     background:#fff;border:1px solid #EAEAF2;border-radius:16px;
     padding:10px;margin:0;
-    opacity:0;visibility:hidden;transform:translateY(-8px);
+    opacity:0;visibility:hidden;transform:translateY(-8px) scale(.98);
     transition:opacity .25s ease,transform .25s ease,visibility .25s;
     box-shadow:0 20px 50px rgba(73,55,138,.16),0 4px 12px rgba(73,55,138,.06);
     z-index:55;
@@ -62,9 +68,9 @@
     border-left:1px solid #EAEAF2;border-top:1px solid #EAEAF2;
     transform:rotate(45deg);border-radius:3px;
   }
-  .nav-item:hover .nav-dropdown,
-  .nav-item:focus-within .nav-dropdown{
-    opacity:1;visibility:visible;transform:translateY(0);
+  /* 气泡由一级 Tab 点击控制（is-open），选中任一项后收起 */
+  .nav-item.is-open .nav-dropdown{
+    opacity:1;visibility:visible;transform:translateY(0) scale(1);
   }
   .dd-item{
     display:flex;align-items:center;gap:12px;

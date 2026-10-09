@@ -19,6 +19,20 @@ const PrivateDeployPage = lazy(() =>
   import('./pages/services/PrivateDeployPage').then((m) => ({ default: m.PrivateDeployPage }))
 );
 
+// 2. 产品与平台能力（4 个产品页：总览 / 数字员工 / 工作台 / 开发套件）
+const AgentPlatformHome = lazy(() =>
+  import('./pages/agent-platform/AgentPlatformHome').then((m) => ({ default: m.AgentPlatformHome }))
+);
+const DigitalEmployeePage = lazy(() =>
+  import('./pages/agent-platform/DigitalEmployeePage').then((m) => ({ default: m.DigitalEmployeePage }))
+);
+const WorkbenchPage = lazy(() =>
+  import('./pages/agent-platform/WorkbenchPage').then((m) => ({ default: m.WorkbenchPage }))
+);
+const SuitePage = lazy(() =>
+  import('./pages/agent-platform/SuitePage').then((m) => ({ default: m.SuitePage }))
+);
+
 function RouteLoading() {
   return (
     <div className="route-loading" aria-busy="true">
@@ -46,11 +60,11 @@ export const PORTAL_ROUTES: RouteObject[] = [
       { path: 'services/compute', element: withSuspense(<ComputePage />) },
       { path: 'services/private-deployment', element: withSuspense(<PrivateDeployPage />) },
 
-      // 2. 智能体开发平台
-      { path: 'agent-platform', ...placeholder('智能体开发平台') },
-      { path: 'agent-platform/digital-employee', ...placeholder('数字员工平台') },
-      { path: 'agent-platform/workbench', ...placeholder('智能体工作台') },
-      { path: 'agent-platform/suite', ...placeholder('智能体开发套件') },
+      // 2. 产品与平台能力（4 个产品页，头部「产品与平台」气泡菜单入口）
+      { path: 'agent-platform', element: withSuspense(<AgentPlatformHome />) },
+      { path: 'agent-platform/digital-employee', element: withSuspense(<DigitalEmployeePage />) },
+      { path: 'agent-platform/workbench', element: withSuspense(<WorkbenchPage />) },
+      { path: 'agent-platform/suite', element: withSuspense(<SuitePage />) },
 
       // 3. 大模型广场
       { path: 'models', ...placeholder('大模型广场') },
