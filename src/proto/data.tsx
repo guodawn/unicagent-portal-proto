@@ -72,8 +72,8 @@ export const NAV_DROPDOWN_ITEMS: NavDropdownItem[] = [
 export const AGENT_NAV_ITEMS: NavDropdownItem[] = [
   {
     path: '/agent-platform',
-    title: '平台总览',
-    desc: '选择适合你的 AI 使用方式',
+    title: '智能体开发平台',
+    desc: '总览 · 选择适合你的 AI 使用方式',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />

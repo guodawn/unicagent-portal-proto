@@ -83,8 +83,7 @@ export const AgpHero: React.FC<{
   primary: HeroAction;
   secondary?: HeroAction;
   visual: React.ReactNode;
-  dark?: boolean;
-}> = ({ eyebrow, title, lead, primary, secondary, visual, dark }) => {
+}> = ({ eyebrow, title, lead, primary, secondary, visual }) => {
   useProtoReveal();
   const renderAction = (a: HeroAction, cls: string) =>
     a.to ? (
@@ -93,7 +92,7 @@ export const AgpHero: React.FC<{
       <a href={a.href} className={`btn ${cls}`}>{a.label}</a>
     );
   return (
-    <section className={`agp-hero${dark ? ' agp-hero--dark' : ''}`}>
+    <section className="agp-hero">
       <div className="agp-hero__mesh" aria-hidden="true" />
       <div className="wrap agp-hero__in">
         <div className="agp-hero__copy">
@@ -226,7 +225,7 @@ export const AgpActionsBand: React.FC<{
 /** 数字员工：双卡 + 积分通用说明 */
 export const AgpPricingCards: React.FC<{
   tag: string; title: string; lead: string;
-  cards: { pill: string; title: string; lead: string; link: string }[];
+  cards: { pill: string; title: string; lead: string; link: string; to: string }[];
   shared: { left: string; right: string; parts: string[] };
 }> = ({ tag, title, lead, cards, shared }) => (
   <section className="agp-sec agp-sec--soft" id="agp-pricing">
@@ -238,18 +237,24 @@ export const AgpPricingCards: React.FC<{
             <span>{c.pill}</span>
             <h3>{c.title}</h3>
             <p>{c.lead}</p>
-            <b>{c.link}　→</b>
+            <Link to={c.to} className="agp-price__link">{c.link}　→</Link>
           </article>
         ))}
       </div>
-      <div className="agp-price__shared reveal">
-        <b>{shared.left}</b>
-        <span className="agp-price__eq">＋</span>
-        <b>{shared.right}</b>
-        <i className="agp-price__arrow" aria-hidden="true" />
-        <span className="agp-price__note">
-          均可用于：<strong>{shared.parts[0]}</strong>　＋　<strong>{shared.parts[1]}</strong>
-        </span>
+      <div className="agp-shared reveal" aria-label="积分通用说明">
+        <div className="agp-shared__src">
+          <span className="agp-shared__chip agp-shared__chip--a"><i aria-hidden="true" />{shared.left}</span>
+          <i className="agp-shared__op" aria-hidden="true">＋</i>
+          <span className="agp-shared__chip agp-shared__chip--b"><i aria-hidden="true" />{shared.right}</span>
+        </div>
+        <div className="agp-shared__mid">
+          <i className="agp-shared__line" aria-hidden="true" />
+          <em>均可用于</em>
+          <i className="agp-shared__line" aria-hidden="true" />
+        </div>
+        <div className="agp-shared__use">
+          {shared.parts.map((p) => <span key={p}>{p}</span>)}
+        </div>
       </div>
     </div>
   </section>
@@ -264,13 +269,14 @@ export const AgpCta: React.FC<{ title: string; lead: string; primary: HeroAction
     a.to ? <Link to={a.to} className={`btn ${cls}`}>{a.label}</Link> : <a href={a.href} className={`btn ${cls}`}>{a.label}</a>;
   return (
     <section className="agp-cta">
-      <div className="agp-cta__mesh" aria-hidden="true" />
-      <div className="wrap agp-cta__in">
-        <h2>{title}</h2>
-        <p>{lead}</p>
-        <div className="agp-cta__actions">
-          {renderAction(primary, 'agp-btn-light')}
-          {secondary && renderAction(secondary, 'agp-btn-ghostlight')}
+      <div className="wrap">
+        <div className="agp-cta__card reveal">
+          <h2>{title}</h2>
+          <p>{lead}</p>
+          <div className="agp-cta__actions">
+            {renderAction(primary, 'btn-primary')}
+            {secondary && renderAction(secondary, 'btn-ghost')}
+          </div>
         </div>
       </div>
     </section>

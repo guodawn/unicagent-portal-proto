@@ -108,7 +108,7 @@ export const SiteHeader: React.FC = () => {
             label="产品与平台"
             items={AGENT_NAV_ITEMS}
             active={pathname.startsWith('/agent-platform')}
-            ariaLabel="产品与平台能力菜单"
+            ariaLabel="产品与平台菜单"
           />
           <Link to="/models">大模型广场</Link>
           <Link to="/pricing">定价</Link>

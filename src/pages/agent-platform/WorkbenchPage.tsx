@@ -6,50 +6,69 @@ import { AgpPage, AgpHero, AgpHead, AgpCta, AgpActionsBand, BuilderWindow, AgpIc
  * 布局语言：模板画廊 → 交互式配置 → 方式对比 → 垂直时间轴 → 发布桥接 → 行动带 → CTA
  */
 
-type ConfigArt =
-  | { kind: 'pills'; on: number }
-  | { kind: 'rows'; rows: number }
-  | { kind: 'chain' };
+type ConfigArt = { kind: 'model' } | { kind: 'role' } | { kind: 'knowledge' } | { kind: 'flow' };
 
 const CONFIGS: { icon: AgpIconName; title: string; lead: string; label: string; art: ConfigArt }[] = [
-  { icon: 'spark', title: '模型与参数', lead: '根据任务选择模型，调整生成表现，匹配不同业务需要。', label: '模型选择', art: { kind: 'pills', on: 1 } },
-  { icon: 'person', title: '角色与指令', lead: '明确智能体职责、回答要求与输出形式。', label: '指令配置', art: { kind: 'rows', rows: 3 } },
-  { icon: 'book', title: '知识库', lead: '接入业务资料，为问答与内容处理提供知识依据。', label: '知识接入', art: { kind: 'rows', rows: 4 } },
-  { icon: 'flow', title: '工作流', lead: '组织任务步骤与规则，让多步骤业务按流程执行。', label: '流程编排', art: { kind: 'chain' } },
+  { icon: 'spark', title: '模型与参数', lead: '根据任务选择模型，调整生成表现，匹配不同业务需要。', label: '模型选择', art: { kind: 'model' } },
+  { icon: 'person', title: '角色与指令', lead: '明确智能体职责、回答要求与输出形式。', label: '角色设定', art: { kind: 'role' } },
+  { icon: 'book', title: '知识库', lead: '接入业务资料，为问答与内容处理提供知识依据。', label: '知识接入', art: { kind: 'knowledge' } },
+  { icon: 'flow', title: '工作流', lead: '组织任务步骤与规则，让多步骤业务按流程执行。', label: '流程编排', art: { kind: 'flow' } },
 ];
 
 function ConfigArt({ art }: { art: ConfigArt }) {
-  if (art.kind === 'pills') {
-    return (
-      <div className="agp-cfg-pill">
-        {['通用模型', '长文本模型', '行业模型'].map((m, i) => (
-          <span key={m} className={i === art.on ? 'is-on' : ''}>{m}</span>
-        ))}
-      </div>
-    );
-  }
-  if (art.kind === 'rows') {
+  if (art.kind === 'model') {
     return (
       <>
-        {Array.from({ length: art.rows }).map((_, i) => (
-          <div className="agp-cfg-row" key={i}>
-            <small>{`条目 ${i + 1}`}</small>
-            <div className="agp-lines">
-              <i style={{ width: `${88 - i * 14}%` }} />
-            </div>
+        <div className="agp-cfg-pill">
+          {['通用模型', '长文本模型', '行业模型'].map((m, i) => (
+            <span key={m} className={i === 1 ? 'is-on' : ''}>{m}</span>
+          ))}
+        </div>
+        <span className="agp-cfg-sub">参数</span>
+        <div className="agp-cfg-slider"><small>温度</small><span className="track" style={{ '--fill': '38%' } as React.CSSProperties} /><em>0.7</em></div>
+        <div className="agp-cfg-slider"><small>最大输出</small><span className="track" style={{ '--fill': '66%' } as React.CSSProperties} /><em>4096</em></div>
+      </>
+    );
+  }
+  if (art.kind === 'role') {
+    return (
+      <>
+        <div className="agp-cfg-rolehead">
+          <i><AgpIcon name="person" /></i>
+          <div className="agp-lines"><i style={{ width: '34%', height: 10 }} /><i style={{ width: '58%' }} /></div>
+        </div>
+        <span className="agp-cfg-sub">指令</span>
+        <div className="agp-cfg-prompt">
+          <small>SYSTEM</small>
+          <div className="agp-lines"><i style={{ width: '92%' }} /><i style={{ width: '76%' }} /><i style={{ width: '84%' }} /><i style={{ width: '48%' }} /></div>
+        </div>
+      </>
+    );
+  }
+  if (art.kind === 'knowledge') {
+    return (
+      <>
+        {[58, 72, 44].map((w, i) => (
+          <div className="agp-cfg-doc" key={i}>
+            <i><AgpIcon name="doc" /></i>
+            <div className="agp-lines"><i style={{ width: `${w}%` }} /><i style={{ width: `${w - 22}%` }} /></div>
+            <b aria-label="已接入" />
           </div>
         ))}
       </>
     );
   }
   return (
-    <div className="agp-cfg-nodechain">
-      {['开始', '知识检索', '规则判断', '输出'].map((n, i) => (
-        <React.Fragment key={n}>
-          <span className={i === 0 ? 'is-on' : ''} style={i === 0 ? { color: 'var(--purple-2)', background: '#F6F3FF', borderColor: '#D5C8FA' } : undefined}>{n}</span>
-          <i aria-hidden="true">→</i>
-        </React.Fragment>
-      ))}
+    <div className="agp-flow">
+      <div className="agp-flow__node agp-flow__node--done" style={{ gridColumn: 1 }}><span className="dot" />开始<em>已完成</em></div>
+      <i className="agp-flow__vlink" style={{ gridColumn: 1 }} aria-hidden="true" />
+      <div className="agp-flow__node agp-flow__node--done" style={{ gridColumn: 1 }}><span className="dot" />知识检索<em>已完成</em></div>
+      <i className="agp-flow__vlink" style={{ gridColumn: 1 }} aria-hidden="true" />
+      <div className="agp-flow__node agp-flow__node--run" style={{ gridColumn: 1 }}><span className="dot" />规则判断<em>运行中</em></div>
+      <i className="agp-flow__hlink" style={{ gridColumn: 2 }} aria-hidden="true" />
+      <div className="agp-flow__branch" style={{ gridColumn: 3 }}><span className="dot" />需人工确认</div>
+      <i className="agp-flow__vlink" style={{ gridColumn: 1 }} aria-hidden="true" />
+      <div className="agp-flow__node agp-flow__node--wait" style={{ gridColumn: 1 }}><span className="dot" />输出<em>待运行</em></div>
     </div>
   );
 }
@@ -97,21 +116,21 @@ export const WorkbenchPage: React.FC = () => {
           </div>
           <div className="agp-tpl-grid">
             {templates.map((t) => (
-              <article className={`agp-tpl ${t.cls} reveal`} key={t.title}>
+              <a href="#agp-wb-config" className={`agp-tpl ${t.cls} reveal`} key={t.title}>
                 <div className="agp-tpl__view" aria-hidden="true"><i /><i /><i /><i /></div>
                 <div className="agp-tpl__body">
                   <h3>{t.title}</h3>
                   <p>{t.lead}</p>
                   <b>使用模板</b>
                 </div>
-              </article>
+              </a>
             ))}
           </div>
         </div>
       </section>
 
       {/* 02 应用配置：交互式配置探索 */}
-      <section className="agp-sec agp-sec--soft">
+      <section className="agp-sec agp-sec--soft" id="agp-wb-config">
         <div className="wrap">
           <div className="reveal">
             <AgpHead tag="02 / 应用配置" title="应用如何工作，由你配置" lead="用四类能力配置智能体，让它的职责、依据和处理方式贴近实际业务。" />

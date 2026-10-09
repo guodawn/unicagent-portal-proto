@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { AgpPage, AgpHero, AgpHead, AgpCta, AgpActionsBand, CodeWindow, AgpIcon, type AgpIconName } from './shared';
 
 /**
@@ -39,12 +40,11 @@ export const SuitePage: React.FC = () => {
   return (
     <AgpPage>
       <AgpHero
-        dark
         eyebrow="智能体开发套件 / 面向代码开发者"
         title={<>用代码拓展智能能力<br /><span className="grad">让 AI 接入业务系统</span></>}
         lead="将模型能力、智能体应用与业务逻辑结合，通过代码完成定制开发和系统集成，满足复杂业务场景的需要。"
         primary={{ label: '了解接入方案', href: '#agp-suite-ways' }}
-        secondary={{ label: '技术咨询', href: '#agp-cta' }}
+        secondary={{ label: '预约咨询', href: '#agp-cta' }}
         visual={
           <CodeWindow
             file="agent-service.ts"
@@ -71,7 +71,7 @@ export const SuitePage: React.FC = () => {
           </div>
           <div className="agp-ways reveal">
             {ways.map((w, i) => (
-              <div className="agp-way" key={w.title}>
+              <Link to="/docs" className="agp-way" key={w.title}>
                 <em>{`0${i + 1}`}</em>
                 <i><AgpIcon name={w.icon} /></i>
                 <div>
@@ -79,7 +79,7 @@ export const SuitePage: React.FC = () => {
                   <p>{w.lead}</p>
                 </div>
                 <b aria-hidden="true">→</b>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -182,14 +182,14 @@ export const SuitePage: React.FC = () => {
           </div>
           <div className="agp-res-list reveal">
             {resources.map((r) => (
-              <div className="agp-res" key={r.title}>
+              <Link to="/docs" className="agp-res" key={r.title}>
                 <i><AgpIcon name={r.icon} /></i>
                 <div>
                   <h3>{r.title}</h3>
                   <p>{r.lead}</p>
                 </div>
                 <b>{r.link}　→</b>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -200,7 +200,7 @@ export const SuitePage: React.FC = () => {
         tag="06 / 调用与支持"
         title="平台使用与外部调用，积分通用"
         lead="订阅套餐与 API 充值均可获得通用积分，支持平台内使用与外部 API 调用。"
-        actions={[{ label: '查看定价', to: '/pricing' }, { label: 'API 充值', to: '/pricing/topup' }, { label: '技术咨询', href: '#agp-cta' }]}
+        actions={[{ label: '查看定价', to: '/pricing' }, { label: 'API 充值', to: '/pricing/topup' }, { label: '预约咨询', href: '#agp-cta' }]}
       />
 
       <div id="agp-cta">
@@ -208,7 +208,7 @@ export const SuitePage: React.FC = () => {
           title="把智能体能力，接入你的下一项业务"
           lead="从一个明确的业务系统与智能任务开始，逐步完成开发、集成与交付。"
           primary={{ label: '了解接入方案', href: '#agp-suite-ways' }}
-          secondary={{ label: '技术咨询', to: '/docs' }}
+          secondary={{ label: '预约咨询', href: '#agp-cta' }}
         />
       </div>
     </AgpPage>

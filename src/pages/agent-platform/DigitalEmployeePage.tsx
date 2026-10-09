@@ -34,7 +34,7 @@ export const DigitalEmployeePage: React.FC = () => {
         eyebrow="数字员工平台 / 面向办公使用者"
         title={<>为日常工作<br /><span className="grad">配备你的数字员工</span></>}
         lead="写材料、整理会议、查资料、分析数据。选择适合任务的数字员工，说明需求、提供资料，让 AI 协助你完成工作。"
-        primary={{ label: '体验智能体应用', href: '#agp-employee-tasks' }}
+        primary={{ label: '体验数字员工', href: '#agp-employee-tasks' }}
         secondary={{ label: '查看套餐', href: '#agp-pricing' }}
         visual={
           <ChatWindow
@@ -153,8 +153,8 @@ export const DigitalEmployeePage: React.FC = () => {
         title="按需选择套餐，积分灵活使用"
         lead="订阅套餐与 API 充值均可获得通用积分，支持平台内使用与外部 API 调用。"
         cards={[
-          { pill: '适合持续使用', title: '订阅套餐', lead: '面向持续使用需求，选择套餐并获得相应积分与权益。', link: '查看订阅套餐' },
-          { pill: '适合灵活补充', title: 'API 充值', lead: '按需补充积分，灵活满足平台使用与外部调用需求。', link: '了解积分规则' },
+          { pill: '适合持续使用', title: '订阅套餐', lead: '面向持续使用需求，选择套餐并获得相应积分与权益。', link: '查看订阅套餐', to: '/pricing' },
+          { pill: '适合灵活补充', title: 'API 充值', lead: '按需补充积分，灵活满足平台使用与外部调用需求。', link: '了解积分规则', to: '/pricing/topup' },
         ]}
         shared={{ left: '套餐积分', right: '充值积分', parts: ['平台内使用', '外部 API 调用'] }}
       />
@@ -162,7 +162,7 @@ export const DigitalEmployeePage: React.FC = () => {
       <AgpCta
         title="从一项日常任务开始，体验数字员工的帮助"
         lead="先完成一件具体的工作，再逐步找到适合团队的应用方式。"
-        primary={{ label: '体验智能体应用', to: '/agent-platform/workbench' }}
+        primary={{ label: '体验数字员工', href: '#agp-employee-tasks' }}
         secondary={{ label: '查看套餐', to: '/pricing' }}
       />
     </AgpPage>
