@@ -54,8 +54,7 @@
 @keyframes agpPulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.25);opacity:1}}
 .agp-hero__copy h1{font-size:44px;line-height:1.24;font-weight:800;letter-spacing:-.6px;margin:0 0 18px;animation:fadeUp .7s .05s both}
 .agp-hero__copy h1 .grad{
-  background:linear-gradient(120deg,var(--purple),var(--indigo));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  color:inherit;background:none;-webkit-text-fill-color:currentColor;
 }
 .agp-hero__copy>p{font-size:16.5px;color:var(--gray);line-height:1.75;margin:0 0 30px;max-width:520px;animation:fadeUp .7s .15s both}
 .agp-hero__actions{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .7s .25s both}
@@ -358,14 +357,19 @@
   border-right:1px solid #EFEDF8;background:#FAF9FE;padding:16px 12px;
   display:flex;flex-direction:column;gap:6px;
 }
-.agp-workspace__side span{
-  font-size:13px;color:#5A5470;border-radius:9px;padding:9px 12px;display:flex;align-items:center;gap:8px;
+.agp-workspace__side button{
+  font:inherit;font-size:13px;color:#5A5470;border-radius:9px;padding:9px 12px;
+  display:flex;align-items:center;gap:8px;
+  background:none;border:0;text-align:left;cursor:pointer;width:100%;
+  transition:color .2s ease,background .2s ease;
 }
-.agp-workspace__side span::before{content:"";width:5px;height:5px;border-radius:50%;background:#CFC7EA}
+.agp-workspace__side button::before{content:"";width:5px;height:5px;border-radius:50%;background:#CFC7EA;flex-shrink:0}
+.agp-workspace__side button:hover{color:var(--purple-2)}
 .agp-workspace__side .is-on{color:var(--purple-2);background:#F1ECFF;font-weight:650}
 .agp-workspace__side .is-on::before{background:var(--purple)}
-.agp-workspace__main{padding:22px;display:flex;flex-direction:column;gap:16px}
-.agp-workspace__main>small{font-size:13px;color:var(--gray);font-weight:600}
+.agp-workspace__main{padding:22px;display:flex;flex-direction:column}
+.agp-workspace__pane{display:flex;flex-direction:column;gap:16px;height:100%;animation:agpPaneIn .4s ease both}
+.agp-workspace__pane>small{font-size:13px;color:var(--gray);font-weight:600}
 .agp-ws-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .agp-ws-tile{
   border:1px solid #E9E6F5;border-radius:14px;padding:16px;background:#fff;

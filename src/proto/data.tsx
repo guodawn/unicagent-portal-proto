@@ -119,6 +119,54 @@ export const AGENT_NAV_ITEMS: NavDropdownItem[] = [
   },
 ];
 
+/* ====================== 「行业解决方案」气泡菜单（4 个行业页入口） ====================== */
+
+export const SOLUTION_NAV_ITEMS: NavDropdownItem[] = [
+  {
+    path: '/solutions/auto',
+    title: '汽车行业解决方案',
+    desc: '客户全旅程与经销运营',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 13l2-5h14l2 5M5 13h14v5H5zM7.5 18v2M16.5 18v2" />
+        <circle cx="8" cy="15.5" r="1" />
+        <circle cx="16" cy="15.5" r="1" />
+      </svg>
+    ),
+  },
+  {
+    path: '/solutions/power',
+    title: '电力行业解决方案',
+    desc: '设备运检与现场作业',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M13 2L4 14h6l-1 8 9-12h-6z" />
+      </svg>
+    ),
+  },
+  {
+    path: '/solutions/tobacco',
+    title: '烟草行业解决方案',
+    desc: '供应链与终端经营',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 19C5 10.5 11 4 20 4c0 9-6 15-15 15z" />
+        <path d="M5 19c2-5 5-8.5 9-10.5" />
+      </svg>
+    ),
+  },
+  {
+    path: '/solutions/energy',
+    title: '能源行业解决方案',
+    desc: '安全生产与能效运营',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 21h18M4 21V9l5 3.5V9l5 3.5V5l5 3v13" />
+      </svg>
+    ),
+  },
+];
+
 /* ====================== 行业解决方案（首页 Tabs） ====================== */
 
 export interface SolutionFeature {

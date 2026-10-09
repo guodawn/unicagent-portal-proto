@@ -25,7 +25,12 @@ const FOOT_COLS: FootCol[] = [
   },
   {
     title: '模型与解决方案',
-    links: [{ label: '汽车行业方案' }, { label: '金融行业方案' }, { label: '电力行业方案' }, { label: '烟草行业方案' }],
+    links: [
+      { label: '汽车行业方案', to: '/solutions/auto' },
+      { label: '电力行业方案', to: '/solutions/power' },
+      { label: '烟草行业方案', to: '/solutions/tobacco' },
+      { label: '能源行业方案', to: '/solutions/energy' },
+    ],
   },
   {
     title: '联系与服务',

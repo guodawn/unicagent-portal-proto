@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router';
 import { AgpPage, AgpHero, AgpHead, AgpCta, AgpPricingCards, ChatWindow } from './shared';
 
 /**
  * 产品与平台能力 · 数字员工平台（/agent-platform/digital-employee）
- * 布局语言：任务矩阵 → 横向步骤 → 工作台窗口 → 双面板桥接 → 定价 → CTA
+ * 布局语言：任务矩阵 → 横向步骤 → 工作台窗口（侧栏切换） → 双面板桥接 → 定价 → CTA
  */
 export const DigitalEmployeePage: React.FC = () => {
+  const [nav, setNav] = useState(0);
   const tasks = [
     { ch: '写', title: '写作助理', lead: '协助起草、修改与润色邮件、通知、方案和报告。', res: '成果：结构完整的文稿', c1: '#7C3AED', c2: '#A78BFA' },
     { ch: '会', title: '会议助理', lead: '从会议记录中整理议题、结论与行动项。', res: '成果：会议纪要与待办', c1: '#6366F1', c2: '#8AB4FF' },
@@ -22,10 +23,38 @@ export const DigitalEmployeePage: React.FC = () => {
     { title: '查看、调整、使用', lead: '继续完善内容，转为下一步工作输入或交付物。' },
   ];
 
-  const tiles = [
-    { task: '写材料', a: '写作助理', b: '汇报助理' },
-    { task: '查资料', a: '资料研究员', b: '企业知识助理' },
-    { task: '看数据', a: '数据分析员', b: '结果解读' },
+  /** 工作台窗口：点击侧栏切换主区内容 */
+  const workspace = [
+    {
+      nav: '我的数字员工',
+      small: '根据任务，选择合适的助手',
+      tiles: [
+        { task: '写材料', a: '写作助理', b: '汇报助理' },
+        { task: '查资料', a: '资料研究员', b: '企业知识助理' },
+        { task: '看数据', a: '数据分析员', b: '结果解读' },
+      ],
+      more: <>需要专属应用？ <Link to="/agent-platform/workbench">去智能体工作台 →</Link></>,
+    },
+    {
+      nav: '常用任务',
+      small: '最近使用的工作任务',
+      tiles: [
+        { task: '整理会议纪要', a: '会议助理', b: '上周 3 次' },
+        { task: '起草项目周报', a: '写作助理', b: '昨天' },
+        { task: '数据月报分析', a: '数据分析员', b: '3 天前' },
+      ],
+      more: <>在任务中可随时唤起数字员工，处理结果一键复用。</>,
+    },
+    {
+      nav: '工作成果',
+      small: '近期生成的工作成果',
+      tiles: [
+        { task: '项目月度总结', a: '汇报助理 生成', b: '今天 09:20' },
+        { task: '会议纪要与待办', a: '会议助理 生成', b: '昨天 16:05' },
+        { task: '供应商对比简报', a: '资料研究员 生成', b: '周一' },
+      ],
+      more: <>成果可继续编辑调整，或转为新任务的输入。</>,
+    },
   ];
 
   return (
@@ -100,25 +129,33 @@ export const DigitalEmployeePage: React.FC = () => {
               <span className="agp-win__badge">入口示意</span>
             </div>
             <div className="agp-workspace__body">
-              <aside className="agp-workspace__side">
-                <span className="is-on">我的数字员工</span>
-                <span>常用任务</span>
-                <span>工作成果</span>
+              <aside className="agp-workspace__side" aria-label="工作台导航切换">
+                {workspace.map((w, i) => (
+                  <button
+                    type="button"
+                    key={w.nav}
+                    className={i === nav ? 'is-on' : ''}
+                    aria-pressed={i === nav}
+                    onClick={() => setNav(i)}
+                  >
+                    {w.nav}
+                  </button>
+                ))}
               </aside>
-              <div className="agp-workspace__main">
-                <small>根据任务，选择合适的助手</small>
-                <div className="agp-ws-tiles">
-                  {tiles.map((t) => (
-                    <div className="agp-ws-tile" key={t.task}>
-                      <b>{t.task}</b>
-                      <span>{t.a}</span>
-                      <span>{t.b}</span>
-                    </div>
-                  ))}
+              <div className="agp-workspace__main" aria-live="polite">
+                <div className="agp-workspace__pane" key={nav}>
+                  <small>{workspace[nav].small}</small>
+                  <div className="agp-ws-tiles">
+                    {workspace[nav].tiles.map((t) => (
+                      <div className="agp-ws-tile" key={t.task}>
+                        <b>{t.task}</b>
+                        <span>{t.a}</span>
+                        <span>{t.b}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="agp-workspace__more">{workspace[nav].more}</p>
                 </div>
-                <p className="agp-workspace__more">
-                  需要专属应用？ <Link to="/agent-platform/workbench">去智能体工作台 →</Link>
-                </p>
               </div>
             </div>
           </div>

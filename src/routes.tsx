@@ -33,6 +33,20 @@ const SuitePage = lazy(() =>
   import('./pages/agent-platform/SuitePage').then((m) => ({ default: m.SuitePage }))
 );
 
+// 5. 行业解决方案（4 个行业页，头部「行业解决方案」气泡菜单入口）
+const AutoSolutionPage = lazy(() =>
+  import('./pages/solutions/AutoSolutionPage').then((m) => ({ default: m.AutoSolutionPage }))
+);
+const PowerSolutionPage = lazy(() =>
+  import('./pages/solutions/PowerSolutionPage').then((m) => ({ default: m.PowerSolutionPage }))
+);
+const TobaccoSolutionPage = lazy(() =>
+  import('./pages/solutions/TobaccoSolutionPage').then((m) => ({ default: m.TobaccoSolutionPage }))
+);
+const EnergySolutionPage = lazy(() =>
+  import('./pages/solutions/EnergySolutionPage').then((m) => ({ default: m.EnergySolutionPage }))
+);
+
 function RouteLoading() {
   return (
     <div className="route-loading" aria-busy="true">
@@ -74,10 +88,11 @@ export const PORTAL_ROUTES: RouteObject[] = [
       { path: 'pricing', ...placeholder('套餐购买') },
       { path: 'pricing/topup', ...placeholder('API 充值') },
 
-      // 5. 行业解决方案
-      { path: 'solutions/auto', ...placeholder('汽车行业解决方案') },
-      { path: 'solutions/power', ...placeholder('电力行业解决方案') },
-      { path: 'solutions/energy', ...placeholder('能源行业解决方案') },
+      // 5. 行业解决方案（4 个行业页 + 通用占位）
+      { path: 'solutions/auto', element: withSuspense(<AutoSolutionPage />) },
+      { path: 'solutions/power', element: withSuspense(<PowerSolutionPage />) },
+      { path: 'solutions/tobacco', element: withSuspense(<TobaccoSolutionPage />) },
+      { path: 'solutions/energy', element: withSuspense(<EnergySolutionPage />) },
       { path: 'solutions/general', ...placeholder('通用行业解决方案') },
 
       // 6. 文档

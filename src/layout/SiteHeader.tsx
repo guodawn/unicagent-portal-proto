@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router';
-import { LogoMarkSvg, NAV_DROPDOWN_ITEMS, AGENT_NAV_ITEMS, type NavDropdownItem } from '@/proto/data';
+import { Link, useLocation } from 'react-router';
+import { LogoMarkSvg, NAV_DROPDOWN_ITEMS, AGENT_NAV_ITEMS, SOLUTION_NAV_ITEMS, type NavDropdownItem } from '@/proto/data';
 
 /**
  * 一级 Tab 气泡菜单：点击 Tab 弹出气泡卡片，选中任一项（或点击外部 / Esc / 路由变化）后收起。
@@ -69,26 +69,11 @@ function NavMenuTab({
 
 /**
  * 原型版顶部导航（docs/07 §3.1）：
- * sticky 毛玻璃 + 两个一级 Tab 气泡菜单（首页服务入口 / 产品与平台能力）。
- * 「行业解决方案」保持原型锚点行为：非首页先回首页，140ms 后平滑滚动。
+ * sticky 毛玻璃 + 三个一级 Tab 气泡菜单（首页服务入口 / 产品与平台能力 / 行业解决方案）。
+ * 选中气泡内任一项后气泡收起（NavMenuTab 内已处理）。
  */
 export const SiteHeader: React.FC = () => {
-  const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  const handleAnchor = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const scroll = () => {
-      const t = document.querySelector(href);
-      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
-    if (pathname !== '/') {
-      navigate('/');
-      window.setTimeout(scroll, 140);
-    } else {
-      scroll();
-    }
-  };
 
   return (
     <header className="nav">
@@ -110,16 +95,14 @@ export const SiteHeader: React.FC = () => {
             active={pathname.startsWith('/agent-platform')}
             ariaLabel="产品与平台菜单"
           />
+          <NavMenuTab
+            label="行业解决方案"
+            items={SOLUTION_NAV_ITEMS}
+            active={pathname.startsWith('/solutions')}
+            ariaLabel="行业解决方案菜单"
+          />
           <Link to="/models">大模型广场</Link>
           <Link to="/pricing">定价</Link>
-          <a
-            href="#solutions"
-            onClick={(e) => {
-              handleAnchor(e, '#solutions');
-            }}
-          >
-            行业解决方案
-          </a>
           <Link to="/docs">文档</Link>
         </nav>
         <div className="nav-cta">

@@ -112,10 +112,10 @@ export const AgpHero: React.FC<{
 
 /* ====================== 窗口示意（CSS 截图） ====================== */
 
-/** 对话式成果窗口：问题输入 → 成果卡片 */
+/** 对话式成果窗口：问题输入 → 成果卡片（badge 可省略，省略时不渲染角标） */
 export const ChatWindow: React.FC<{
   title: string;
-  badge: string;
+  badge?: string;
   input: string;
   output: string;
   chips: string[];
@@ -124,7 +124,7 @@ export const ChatWindow: React.FC<{
     <div className="agp-win__bar">
       <span className="agp-win__dots" aria-hidden="true"><i /><i /><i /></span>
       <b>{title}</b>
-      <span className="agp-win__badge">{badge}</span>
+      {badge && <span className="agp-win__badge">{badge}</span>}
     </div>
     <div className="agp-win__body">
       <div className="agp-chat__q"><span>{input}</span></div>
