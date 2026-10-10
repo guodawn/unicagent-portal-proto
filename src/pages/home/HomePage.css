@@ -1,0 +1,10 @@
+/* 首页 CTA 区文案颜色覆盖：用户要求红框内标题、副标题、高亮词全部改为纯白色。
+ * 由于 src/styles/proto.css 为原型 CSS 逐字复制的事实源，不直接修改；
+ * 通过本文件追加覆盖规则实现，最后由 HomePage.tsx 引入。 */
+
+.cta-inner h2,
+.cta-inner p,
+.cta-inner .mark-word,
+.cta-inner .mark-purple {
+  color: #ffffff !important;
+}
