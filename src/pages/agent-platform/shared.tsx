@@ -83,7 +83,8 @@ export const AgpHero: React.FC<{
   primary: HeroAction;
   secondary?: HeroAction;
   visual: React.ReactNode;
-}> = ({ eyebrow, title, lead, primary, secondary, visual }) => {
+  className?: string;
+}> = ({ eyebrow, title, lead, primary, secondary, visual, className }) => {
   useProtoReveal();
   const renderAction = (a: HeroAction, cls: string) =>
     a.to ? (
@@ -92,7 +93,7 @@ export const AgpHero: React.FC<{
       <a href={a.href} className={`btn ${cls}`}>{a.label}</a>
     );
   return (
-    <section className="agp-hero">
+    <section className={`agp-hero${className ? ` ${className}` : ''}`}>
       <div className="agp-hero__mesh" aria-hidden="true" />
       <div className="wrap agp-hero__in">
         <div className="agp-hero__copy">
@@ -145,8 +146,9 @@ export const BuilderWindow: React.FC<{
   comps: string[];
   nodes: string[];
   result: string;
-}> = ({ comps, nodes, result }) => (
-  <div className="agp-win agp-builder" aria-label="智能体工作台示意">
+  compact?: boolean;
+}> = ({ comps, nodes, result, compact = false }) => (
+  <div className={`agp-win agp-builder${compact ? ' agp-builder--compact' : ''}`} aria-label="智能体工作台示意">
     <div className="agp-win__bar">
       <span className="agp-win__dots" aria-hidden="true"><i /><i /><i /></span>
       <b>智能体工作台</b>

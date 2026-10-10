@@ -36,23 +36,38 @@ function ConfigArt({ art }: { art: ConfigArt }) {
       <>
         <div className="agp-cfg-rolehead">
           <i><AgpIcon name="person" /></i>
-          <div className="agp-lines"><i style={{ width: '34%', height: 11 }} /><i style={{ width: '58%', height: 8 }} /></div>
+          <div className="agp-cfg-roletext">
+            <b>汽车销售顾问</b>
+            <span>客户接待 · 车型推荐 · 用车答疑</span>
+          </div>
         </div>
         <span className="agp-cfg-sub">指令</span>
         <div className="agp-cfg-prompt">
           <small>SYSTEM</small>
-          <div className="agp-lines"><i style={{ width: '92%' }} /><i style={{ width: '76%' }} /><i style={{ width: '84%' }} /><i style={{ width: '48%' }} /></div>
+          <div className="agp-cfg-text">
+            <p>你是一名资深汽车销售顾问，根据客户家庭结构与用车场景推荐合适车型。</p>
+            <p>回答需引用车型手册参数；不确定的信息如实说明，并记录为客户线索。</p>
+            <p>输出包含：推荐车型、对比要点与下一步跟进建议。</p>
+          </div>
         </div>
       </>
     );
   }
   if (art.kind === 'knowledge') {
+    const docs = [
+      { title: '车型参数手册 2026', meta: 'PDF · 128 页' },
+      { title: '试驾话术与流程', meta: 'DOCX · 36 页' },
+      { title: '售后政策汇编', meta: 'PDF · 54 页' },
+    ];
     return (
       <>
-        {[58, 72, 44].map((w, i) => (
-          <div className="agp-cfg-doc" key={i}>
+        {docs.map((d) => (
+          <div className="agp-cfg-doc" key={d.title}>
             <i><AgpIcon name="doc" /></i>
-            <div className="agp-lines"><i style={{ width: `${w}%` }} /><i style={{ width: `${w - 22}%` }} /></div>
+            <div className="agp-cfg-doctext">
+              <b>{d.title}</b>
+              <span>{d.meta}</span>
+            </div>
             <b aria-label="已接入" />
           </div>
         ))}
@@ -102,6 +117,7 @@ export const WorkbenchPage: React.FC = () => {
         secondary={{ label: '查看应用场景', href: '#agp-wb-templates' }}
         visual={
           <BuilderWindow
+            compact
             comps={['开始', '知识检索', '规则判断', '输出']}
             nodes={['提交材料', '提取关键信息', '对照要求检查']}
             result="发现 3 项待补充内容"

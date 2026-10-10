@@ -24,7 +24,7 @@ import {
   usePlanStore,
   daysUntil,
 } from './planStore';
-import { BillingToggle, PriPage, PriFaq, PriSuccessModal, priToast } from './shared';
+import { BillingToggle, PriPage, PriFaq, PriSuccessModal, PriTabs, priToast } from './shared';
 import { OrderModal, PaymentView, type OrderTarget } from './OrderFlow';
 
 /**
@@ -124,6 +124,7 @@ export const PlansPage: React.FC = () => {
           <h1>{PRICING_HERO.subscription.title}</h1>
           <p>{PRICING_HERO.subscription.lead}</p>
           <div className="pri-hero__action">
+            <PriTabs active="subscription" />
             <BillingToggle cycle={cycle} onChange={setCycle} />
           </div>
         </div>
@@ -160,7 +161,6 @@ export const PlansPage: React.FC = () => {
                   key={plan.id}
                   className={`pri-plan${plan.recommended ? ' recommended' : ''}${isCurrent ? ' current' : ''} reveal`}
                 >
-                  {plan.recommended && !isCurrent && <span className="pri-plan__ribbon">推荐套餐</span>}
                   {isCurrent && <span className="pri-plan__ribbon">当前套餐</span>}
                   <div className="pri-plan__head">
                     <h2>{plan.name}</h2>
@@ -206,7 +206,7 @@ export const PlansPage: React.FC = () => {
       <section className="pri-sec pri-sec--soft">
         <div className="wrap">
           <div className="pri-bundlehead">
-            <div>
+            <div className="pri-bundlehead__copy">
               <h2>套餐资源包</h2>
               <p>资源包用于扩充平台内 Agent 与模型的套餐积分，不是独立会员。主套餐到期后，未到期资源包将暂停使用。</p>
             </div>
@@ -318,16 +318,14 @@ export const PlansPage: React.FC = () => {
         </div>
       </section>
 
-      {/* FAQ（左标题 + 右列表，与上方内容同宽） */}
+      {/* FAQ（标题居中，列表与上方内容同宽） */}
       <section className="pri-sec pri-sec--soft">
         <div className="wrap">
-          <div className="pri-faqlayout">
-            <div className="pri-faqhead">
-              <h2>常见问题</h2>
-              <p>了解套餐订阅、资源包使用与权益生效规则。</p>
-            </div>
-            <PriFaq items={SUBSCRIPTION_FAQS} />
+          <div className="pri-faqhead">
+            <h2>常见问题</h2>
+            <p>了解套餐订阅、资源包使用与权益生效规则。</p>
           </div>
+          <PriFaq items={SUBSCRIPTION_FAQS} />
         </div>
       </section>
 

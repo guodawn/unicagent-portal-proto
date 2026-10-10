@@ -26,10 +26,25 @@
 .pri-hero h1{font-size:40px;line-height:1.28;font-weight:800;letter-spacing:-.5px;margin:0 0 12px;animation:fadeUp .7s .05s both}
 .pri-hero>p{font-size:16px;color:var(--gray);line-height:1.75;margin:0 auto;max-width:620px;animation:fadeUp .7s .12s both}
 .pri-hero__action{
-  display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
   margin-top:26px;min-height:42px;animation:fadeUp .7s .2s both;
 }
 .pri-hero__recharge{padding:11px 30px;font-size:15px}
+
+/* 定价方式切换（订阅套餐 / API充值） */
+.pri-tabs{
+  display:inline-flex;gap:4px;padding:4px;
+  background:#F3F0FC;border:1px solid #E9E3F8;border-radius:999px;
+}
+.pri-tabs a{
+  font-size:13.5px;font-weight:650;color:#6D63A8;text-decoration:none;
+  border-radius:999px;padding:7px 22px;transition:all .2s ease;
+}
+.pri-tabs a:hover{color:var(--purple-2)}
+.pri-tabs a.is-active{
+  color:#fff;background:linear-gradient(135deg,var(--purple),var(--indigo));
+  box-shadow:0 6px 16px rgba(101,73,237,.3);
+}
 
 /* 计费周期切换 */
 .pri-cycle{display:inline-flex;align-items:center;gap:12px}
@@ -166,11 +181,11 @@
 
 /* ============ 套餐资源包 ============ */
 .pri-bundlehead{
-  display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;
-  margin-bottom:28px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  margin-bottom:28px;text-align:center;
 }
-.pri-bundlehead h2{font-size:26px;font-weight:800;letter-spacing:-.4px;margin:0 0 8px;color:#1B1636}
-.pri-bundlehead p{font-size:14px;color:var(--gray);margin:0;max-width:560px;line-height:1.7}
+.pri-bundlehead__copy h2{font-size:26px;font-weight:800;letter-spacing:-.4px;margin:0 0 8px;color:#1B1636}
+.pri-bundlehead__copy p{font-size:14px;color:var(--gray);margin:0 auto;max-width:560px;line-height:1.7}
 .pri-bundlestatus{
   flex-shrink:0;font-size:12.5px;font-weight:650;color:#8A83AC;
   background:#F4F2FA;border:1px solid #E8E4F2;border-radius:999px;padding:6px 16px;
@@ -233,9 +248,8 @@
 .pri-muted{color:#A8A3C0;font-size:12.5px}
 .pri-agentcopy{color:var(--gray);font-size:12.5px;line-height:1.7}
 
-/* ============ FAQ（原版布局：左标题 + 右列表，宽度与上方内容一致） ============ */
-.pri-faqlayout{display:grid;grid-template-columns:230px 1fr;gap:52px;align-items:start}
-.pri-faqhead{margin:0;text-align:left;max-width:none}
+/* ============ FAQ（标题居中，列表与上方内容同宽） ============ */
+.pri-faqhead{max-width:720px;margin:0 auto 36px;text-align:center}
 .pri-faqhead h2{font-size:28px;font-weight:800;letter-spacing:-.4px;margin:0 0 10px;color:#1B1636}
 .pri-faqhead p{font-size:13.5px;color:var(--gray);margin:0;line-height:1.7}
 .pri-faq__list{border-top:1px solid #E8E6F3}
@@ -566,7 +580,6 @@
   .pri-scopegrid{grid-template-columns:1fr}
   .pri-comptable-wrap{overflow-x:auto}
   .pri-comptable{min-width:860px}
-  .pri-faqlayout{grid-template-columns:1fr;gap:24px}
   .pri-order__meta{grid-template-columns:1fr 1fr}
   .pri-order__bgrid{grid-template-columns:1fr}
 }

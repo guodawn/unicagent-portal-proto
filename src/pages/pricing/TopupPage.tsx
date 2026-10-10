@@ -1,6 +1,6 @@
 import React from 'react';
 import { API_DIFFERENCE_ROWS, API_FAQS, API_SCOPE_CARDS, PRICING_HERO } from './data';
-import { PriPage, PriFaq, priToast } from './shared';
+import { PriPage, PriFaq, PriTabs, priToast } from './shared';
 
 /**
  * 定价 · API充值（/pricing/topup）
@@ -22,6 +22,7 @@ export const TopupPage: React.FC = () => {
           <h1>{PRICING_HERO.api.title}</h1>
           <p>{PRICING_HERO.api.lead}</p>
           <div className="pri-hero__action">
+            <PriTabs active="api" />
             <button type="button" className="btn btn-primary pri-hero__recharge" onClick={recharge}>立即充值</button>
           </div>
         </div>
@@ -91,16 +92,14 @@ export const TopupPage: React.FC = () => {
         </div>
       </section>
 
-      {/* FAQ（左标题 + 右列表，与上方内容同宽） */}
+      {/* FAQ（标题居中，列表与上方内容同宽） */}
       <section className="pri-sec">
         <div className="wrap">
-          <div className="pri-faqlayout">
-            <div className="pri-faqhead">
-              <h2>常见问题</h2>
-              <p>了解 API充值积分的使用范围与扣减规则。</p>
-            </div>
-            <PriFaq items={API_FAQS} />
+          <div className="pri-faqhead">
+            <h2>常见问题</h2>
+            <p>了解 API充值积分的使用范围与扣减规则。</p>
           </div>
+          <PriFaq items={API_FAQS} />
         </div>
       </section>
     </PriPage>
