@@ -98,7 +98,7 @@ export const WorkbenchPage: React.FC = () => {
 
   const templates = [
     { cls: 'agp-tpl--chat', title: '企业知识问答', lead: '将制度、产品和项目资料组织为可查询的业务知识。' },
-    { cls: 'agp-tpl--check', title: '业务材料预审', lead: '围绕材料要求检查内容，整理问题与补充建议。' },
+    { cls: 'agp-tpl--check', title: '多步骤任务自动化', lead: '通过检索、判断和生成等节点，自动完成业务处理与结果输出。' },
     { cls: '', title: '报告内容生成', lead: '根据输入资料与输出要求，生成结构化报告。' },
     { cls: '', title: '业务咨询助手', lead: '结合专业知识与处理规则，回答常见业务问题。' },
   ];
@@ -203,11 +203,11 @@ export const WorkbenchPage: React.FC = () => {
               </div>
             </article>
             <article className="agp-mode__panel">
-              <em>方式二 · 材料预审</em>
-              <h3>材料预审</h3>
-              <p>适合需要多个处理步骤的任务，重点通过工作流组织检查规则与输出。</p>
+              <em>方式二 · 工作流编排</em>
+              <h3>多步骤任务自动化</h3>
+              <p>适合有固定步骤、判断规则和结构化输出的业务任务，通过工作流组织检索、判断与生成节点。</p>
               <div className="agp-path">
-                <span>提交材料</span><i aria-hidden="true">→</i><span>提取信息</span><i aria-hidden="true">→</i><span>问题清单</span>
+                <span>提交任务</span><i aria-hidden="true">→</i><span>执行流程</span><i aria-hidden="true">→</i><span>输出结果</span>
               </div>
             </article>
           </div>
@@ -241,17 +241,17 @@ export const WorkbenchPage: React.FC = () => {
           <div className="agp-bridge reveal">
             <div className="agp-bridge__panel">
               <h3>开发端：智能体工作台</h3>
-              <p>材料预审应用 · 已完成配置与测试</p>
+              <p>工作流应用 · 已完成配置与测试</p>
               <div className="agp-bridge__meta">
-                <span>模型</span><span>知识库</span><span>规则检查</span><span>问题清单</span>
+                <span>模型</span><span>知识库</span><span>规则判断</span><span>结果输出</span>
               </div>
             </div>
             <div className="agp-bridge__mid" aria-hidden="true" />
             <div className="agp-bridge__panel">
               <h3>使用端：数字员工平台</h3>
-              <p>用户选择“材料预审助理”，提交资料并获取结果。</p>
+              <p>用户选择“工作流应用”，提交任务并获取结果。</p>
               <div className="agp-bridge__meta agp-bridge__meta--path">
-                <span>上传材料</span><span>→</span><span>查看检查结果</span>
+                <span>提交任务</span><span>→</span><span>查看结果</span>
               </div>
             </div>
           </div>

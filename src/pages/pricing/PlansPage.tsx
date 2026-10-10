@@ -120,12 +120,11 @@ export const PlansPage: React.FC = () => {
       {/* 首屏 */}
       <section className="pri-hero">
         <div className="wrap">
-          <span className="pri-kicker">{PRICING_HERO.subscription.kicker}</span>
+          <PriTabs active="subscription" />
           <h1>{PRICING_HERO.subscription.title}</h1>
           <p>{PRICING_HERO.subscription.lead}</p>
           <div className="pri-hero__action">
             <BillingToggle cycle={cycle} onChange={setCycle} />
-            <PriTabs active="subscription" />
           </div>
         </div>
       </section>

@@ -35,6 +35,7 @@
 .pri-tabs{
   display:inline-flex;gap:4px;padding:4px;
   background:#F3F0FC;border:1px solid #E9E3F8;border-radius:999px;
+  margin-bottom:18px;
 }
 .pri-tabs a{
   font-size:13.5px;font-weight:650;color:#6D63A8;text-decoration:none;

@@ -18,11 +18,10 @@ export const TopupPage: React.FC = () => {
       {/* 首屏 */}
       <section className="pri-hero">
         <div className="wrap">
-          <span className="pri-kicker">{PRICING_HERO.api.kicker}</span>
+          <PriTabs active="api" />
           <h1>{PRICING_HERO.api.title}</h1>
           <p>{PRICING_HERO.api.lead}</p>
           <div className="pri-hero__action">
-            <PriTabs active="api" />
             <button type="button" className="btn btn-primary pri-hero__recharge" onClick={recharge}>立即充值</button>
           </div>
         </div>
