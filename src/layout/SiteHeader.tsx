@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router';
-import { LogoMarkSvg, NAV_DROPDOWN_ITEMS, AGENT_NAV_ITEMS, SOLUTION_NAV_ITEMS, type NavDropdownItem } from '@/proto/data';
+import { LogoMarkSvg, NAV_DROPDOWN_ITEMS, AGENT_NAV_ITEMS, SOLUTION_NAV_ITEMS, MODEL_DROPDOWN_ITEMS, type NavDropdownItem } from '@/proto/data';
 
 /**
- * 一级 Tab 直接进入默认页；悬停或键盘聚焦时展示二级气泡菜单。
+ * 一级 Tab 直接进入默认页；悬停或键盘聚焦时展示二级气泡菜单（紧贴 Tab，移开即收起）。
  */
 function NavMenuTab({
   label,
@@ -45,8 +45,8 @@ function NavMenuTab({
 
 /**
  * 原型版顶部导航（docs/07 §3.1）：
- * sticky 毛玻璃 + 三个悬停二级菜单入口（首页 / 智能体开发平台 / 行业解决方案）；
- * 「定价」为普通入口，订阅套餐 / API充值 在定价页内切换。
+ * sticky 毛玻璃 + 四个悬停二级菜单入口（首页 / 智能体开发平台 / 行业解决方案 / 大模型广场）；
+ * 「定价」为普通入口（订阅套餐 / API充值 在定价页内切换），「行业解决方案」默认进入通用方案页。
  */
 export const SiteHeader: React.FC = () => {
   const { pathname } = useLocation();
@@ -71,23 +71,29 @@ export const SiteHeader: React.FC = () => {
             to="/agent-platform"
             items={AGENT_NAV_ITEMS}
             active={pathname.startsWith('/agent-platform')}
-            ariaLabel="产品与平台菜单"
+            ariaLabel="智能体开发平台菜单"
           />
           <NavMenuTab
             label="行业解决方案"
-            to="/solutions/auto"
+            to="/solutions/general"
             items={SOLUTION_NAV_ITEMS}
             active={pathname.startsWith('/solutions')}
             ariaLabel="行业解决方案菜单"
           />
+          <NavMenuTab
+            label="大模型广场"
+            to="/models"
+            items={MODEL_DROPDOWN_ITEMS}
+            active={pathname.startsWith('/models')}
+            ariaLabel="大模型广场菜单"
+          />
           <Link to="/pricing" className={pathname.startsWith('/pricing') ? 'nav-active' : ''}>定价</Link>
-          <Link to="/models">大模型广场</Link>
           <Link to="/docs">文档</Link>
         </nav>
         <div className="nav-cta">
-          <a href="#auth" className="btn btn-ghost">
+          <Link to="/auth" className="btn btn-ghost">
             注册/登录
-          </a>
+          </Link>
         </div>
       </div>
     </header>

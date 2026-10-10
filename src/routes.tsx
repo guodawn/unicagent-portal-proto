@@ -33,7 +33,15 @@ const SuitePage = lazy(() =>
   import('./pages/agent-platform/SuitePage').then((m) => ({ default: m.SuitePage }))
 );
 
-// 4. 定价（订阅套餐 / API充值，头部「定价」气泡菜单入口）
+// 3. 大模型广场 / 大模型体验
+const ModelSquarePage = lazy(() =>
+  import('./pages/models/ModelSquarePage').then((m) => ({ default: m.ModelSquarePage }))
+);
+const ModelExperiencePage = lazy(() =>
+  import('./pages/models/ModelExperiencePage').then((m) => ({ default: m.ModelExperiencePage }))
+);
+
+// 4. 定价（订阅套餐 / API充值，页内切换）
 const PlansPage = lazy(() =>
   import('./pages/pricing/PlansPage').then((m) => ({ default: m.PlansPage }))
 );
@@ -41,7 +49,10 @@ const TopupPage = lazy(() =>
   import('./pages/pricing/TopupPage').then((m) => ({ default: m.TopupPage }))
 );
 
-// 5. 行业解决方案（3 个行业页，头部「行业解决方案」气泡菜单入口）
+// 5. 行业解决方案（通用 + 三行业页，一级菜单「行业解决方案」默认进入通用方案）
+const GeneralSolutionPage = lazy(() =>
+  import('./pages/solutions/GeneralSolutionPage').then((m) => ({ default: m.GeneralSolutionPage }))
+);
 const AutoSolutionPage = lazy(() =>
   import('./pages/solutions/AutoSolutionPage').then((m) => ({ default: m.AutoSolutionPage }))
 );
@@ -51,6 +62,9 @@ const PowerSolutionPage = lazy(() =>
 const TobaccoSolutionPage = lazy(() =>
   import('./pages/solutions/TobaccoSolutionPage').then((m) => ({ default: m.TobaccoSolutionPage }))
 );
+
+// 登录/注册
+const AuthPage = lazy(() => import('./pages/auth/AuthPage').then((m) => ({ default: m.AuthPage })));
 
 function RouteLoading() {
   return (
@@ -79,28 +93,33 @@ export const PORTAL_ROUTES: RouteObject[] = [
       { path: 'services/compute', element: withSuspense(<ComputePage />) },
       { path: 'services/private-deployment', element: withSuspense(<PrivateDeployPage />) },
 
-      // 2. 产品与平台能力（4 个产品页，头部「产品与平台」气泡菜单入口）
+      // 2. 产品与平台能力（4 个产品页）
       { path: 'agent-platform', element: withSuspense(<AgentPlatformHome />) },
       { path: 'agent-platform/digital-employee', element: withSuspense(<DigitalEmployeePage />) },
       { path: 'agent-platform/workbench', element: withSuspense(<WorkbenchPage />) },
       { path: 'agent-platform/suite', element: withSuspense(<SuitePage />) },
 
       // 3. 大模型广场
-      { path: 'models', ...placeholder('大模型广场') },
-      { path: 'models/playground', ...placeholder('大模型体验') },
+      { path: 'models', element: withSuspense(<ModelSquarePage />) },
+      { path: 'models/playground', element: withSuspense(<ModelExperiencePage />) },
 
       // 4. 定价（订阅套餐 / API充值）
       { path: 'pricing', element: withSuspense(<PlansPage />) },
       { path: 'pricing/topup', element: withSuspense(<TopupPage />) },
 
-      // 5. 行业解决方案（3 个行业页 + 通用占位）
+      // 5. 行业解决方案（一级菜单默认落 /solutions/general）
+      { path: 'solutions', element: <Navigate to="/solutions/general" replace /> },
+      { path: 'solutions/general', element: withSuspense(<GeneralSolutionPage />) },
       { path: 'solutions/auto', element: withSuspense(<AutoSolutionPage />) },
       { path: 'solutions/power', element: withSuspense(<PowerSolutionPage />) },
       { path: 'solutions/tobacco', element: withSuspense(<TobaccoSolutionPage />) },
-      { path: 'solutions/general', ...placeholder('通用行业解决方案') },
+      { path: 'solutions/energy', ...placeholder('能源行业解决方案') },
 
       // 6. 文档
       { path: 'docs', ...placeholder('文档中心') },
+
+      // 登录/注册
+      { path: 'auth', element: withSuspense(<AuthPage />) },
 
       { path: '*', element: <NotFoundPage /> },
     ],

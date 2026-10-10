@@ -2,12 +2,13 @@ import type { ReactNode } from 'react';
 
 /* ====================== 共享小图标 ====================== */
 
-/** 品牌太阳 mark（header/footer logo 内，白色描边） */
+/** 品牌 logo（用户提供的众调 logo 图，public/images/logo-brand.png，header/footer 共用） */
 export const LogoMarkSvg = (
-  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="3" />
-    <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" />
-  </svg>
+  <img
+    src="/images/logo-brand.png"
+    alt="众调 logo"
+    style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+  />
 );
 
 /** 对勾（cc-check / wc-check 仅线宽不同） */
@@ -119,9 +120,37 @@ export const AGENT_NAV_ITEMS: NavDropdownItem[] = [
   },
 ];
 
+/* ====================== 「大模型广场」气泡菜单 ====================== */
+
+export const MODEL_DROPDOWN_ITEMS: NavDropdownItem[] = [
+  {
+    path: '/models/playground',
+    title: '大模型体验',
+    desc: '多模型在线对话与调试',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+      </svg>
+    ),
+  },
+];
+
 /* ====================== 「行业解决方案」气泡菜单（3 个行业页入口） ====================== */
 
 export const SOLUTION_NAV_ITEMS: NavDropdownItem[] = [
+  {
+    path: '/solutions/general',
+    title: '通用解决方案',
+    desc: 'AI 工牌 · AI 对练等通用能力',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
+        <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
+        <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
+        <path d="M14 17h7M17.5 13.5v7" />
+      </svg>
+    ),
+  },
   {
     path: '/solutions/auto',
     title: '汽车行业解决方案',
@@ -152,32 +181,6 @@ export const SOLUTION_NAV_ITEMS: NavDropdownItem[] = [
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M5 19C5 10.5 11 4 20 4c0 9-6 15-15 15z" />
         <path d="M5 19c2-5 5-8.5 9-10.5" />
-      </svg>
-    ),
-  },
-];
-
-/* ====================== 「定价」气泡菜单（订阅套餐 / API充值） ====================== */
-
-export const PRICING_NAV_ITEMS: NavDropdownItem[] = [
-  {
-    path: '/pricing',
-    title: '订阅套餐',
-    desc: '主套餐 + 套餐资源包，按周期订阅',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="5" width="18" height="15" rx="2.5" />
-        <path d="M3 10h18M7 15h5" />
-      </svg>
-    ),
-  },
-  {
-    path: '/pricing/topup',
-    title: 'API充值',
-    desc: '按量使用模型能力，积分长期有效',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M13 2L4 14h6l-1 8 9-12h-6z" />
       </svg>
     ),
   },
