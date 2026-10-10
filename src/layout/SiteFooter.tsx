@@ -29,7 +29,6 @@ const FOOT_COLS: FootCol[] = [
       { label: '汽车行业方案', to: '/solutions/auto' },
       { label: '电力行业方案', to: '/solutions/power' },
       { label: '烟草行业方案', to: '/solutions/tobacco' },
-      { label: '能源行业方案', to: '/solutions/energy' },
     ],
   },
   {

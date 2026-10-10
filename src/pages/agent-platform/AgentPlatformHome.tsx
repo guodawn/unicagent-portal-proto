@@ -53,8 +53,9 @@ export const AgentPlatformHome: React.FC = () => {
   return (
     <AgpPage>
       <AgpHero
+        className="agp-hero--overview"
         eyebrow="智能体开发平台 / 总览"
-        title={<>从智能体开发到数字员工应用<br /><span className="grad">让 AI 融入业务</span></>}
+        title={<>从智能体开发到<br /><span className="grad agp-hero__title-line">数字员工应用，让 AI 融入业务</span></>}
         lead="直接使用数字员工，自主配置智能体，或通过代码完成系统集成。让业务需求转化为可用的 AI 应用。"
         primary={{ label: '体验智能体应用', to: '/agent-platform/digital-employee' }}
         secondary={{ label: '探索平台能力 ↓', href: '#agp-overview-products' }}

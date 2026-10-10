@@ -119,7 +119,7 @@ export const AGENT_NAV_ITEMS: NavDropdownItem[] = [
   },
 ];
 
-/* ====================== 「行业解决方案」气泡菜单（4 个行业页入口） ====================== */
+/* ====================== 「行业解决方案」气泡菜单（3 个行业页入口） ====================== */
 
 export const SOLUTION_NAV_ITEMS: NavDropdownItem[] = [
   {
@@ -152,16 +152,6 @@ export const SOLUTION_NAV_ITEMS: NavDropdownItem[] = [
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M5 19C5 10.5 11 4 20 4c0 9-6 15-15 15z" />
         <path d="M5 19c2-5 5-8.5 9-10.5" />
-      </svg>
-    ),
-  },
-  {
-    path: '/solutions/energy',
-    title: '能源行业解决方案',
-    desc: '安全生产与能效运营',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 21h18M4 21V9l5 3.5V9l5 3.5V5l5 3v13" />
       </svg>
     ),
   },
@@ -224,25 +214,25 @@ export const SOLUTION_PANELS: SolutionPanel[] = [
         <circle cx="16" cy="16" r="1" />
       </>
     ),
-    h3: '以 AI 贯通销售培训、展厅服务与售后运营,让每一次客户交互都可分析、可优化。',
+    h3: '覆盖设计研发、生产制造、市场营销、产品销售与售后服务，以智能体贯通汽车产销服全链路。',
     img: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80&auto=format&fit=crop',
     alt: '智能汽车',
     fallback: '🚗',
     features: [
       {
         icon: <svg viewBox="0 0 24 24" fill="none" strokeWidth="2"><path d="M4 12h16M4 12a8 4 0 0116 0M8 12v4M12 12v6M16 12v4" /></svg>,
-        title: '汽车销售 AI 对练智能体',
-        desc: '基于汽车产品知识、客户画像与真实销售场景，模拟不同类型客户开展多轮对话训练;实时反馈话术、需求挖掘、异议处理与成交引导能力，帮助销售顾问在实战前完成高频演练。',
+        title: '研发智能搜索',
+        desc: '检索研发资料与车型数据，辅助研发提效、知识检索和专业决策。',
       },
       {
         icon: <svg viewBox="0 0 24 24" fill="none" strokeWidth="2"><path d="M3 21V8l9-5 9 5v13M9 21V12h6v9M7 7h10" /></svg>,
-        title: '展厅流程质检智能体',
-        desc: '采集展厅接待语言与关键业务节点，自动完成流程质检、需求识别与服务复盘，帮助经销网络沉淀标准化服务能力。',
+        title: '门店智能工牌',
+        desc: '沉淀线下销售与服务过程，支持客户互动分析、服务质检和经营复盘。',
       },
       {
         icon: <svg viewBox="0 0 24 24" fill="none" strokeWidth="2"><path d="M5 17l4-12h6l4 12M7 17h10M9 21h6M12 5v12" /></svg>,
-        title: '试乘试驾质检智能体',
-        desc: '围绕试驾话术、竞品提及、SOP 执行与客户反馈进行智能分析，识别服务短板，提升试驾环节的体验与转化质量。',
+        title: '销售 AI 对练',
+        desc: '以产品知识和真实销售场景开展模拟训练，提升线索转化与成交能力。',
       },
     ],
     gen: {
@@ -294,7 +284,7 @@ export const SOLUTION_PANELS: SolutionPanel[] = [
         <path d="M13 2L4 14h6l-1 8 9-12h-6z" />
       </>
     ),
-    h3: '让设备运维、现场作业与调度管理更智能,推动电网运检从经验驱动走向数据驱动。',
+    h3: '覆盖设备监控、立体巡检、状态评价、检修策略与文档编制，推动电网运检从经验驱动走向数据驱动。',
     img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=900&q=80&auto=format&fit=crop',
     alt: '电力',
     fallback: '⚡',
@@ -311,8 +301,8 @@ export const SOLUTION_PANELS: SolutionPanel[] = [
       },
       {
         icon: <svg viewBox="0 0 24 24" fill="none" strokeWidth="2"><path d="M12 2C8 7 6 11 6 14a6 6 0 0012 0c0-3-2-7-6-12z" /><path d="M12 14l3-3M3 21h18" /></svg>,
-        title: '智能巡检路线规划智能体',
-        desc: '综合设备状态、人员、无人机与车辆等资源,智能匹配巡检任务与最优路线,提升巡检调度与执行效率。',
+        title: '设备立体巡检策略智能体',
+        desc: '综合设备状态、人员、无人机与车辆等资源，自动生成巡检点位、路线与计划。',
       },
     ],
     gen: {
@@ -329,25 +319,25 @@ export const SOLUTION_PANELS: SolutionPanel[] = [
         <path d="M12 2v20M5 9c0-3 3-5 7-5s7 2 7 5M5 9v6c0 3 3 5 7 5s7-2 7-5V9" />
       </>
     ),
-    h3: '面向烟草全链路业务,以智能体连接生产、营销、终端与专卖管理。',
+    h3: '覆盖烟叶收购、仓储、调拨运输、终端陈列与数字配方，以智能体连接烟草全链路业务。',
     img: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80&auto=format&fit=crop',
     alt: '烟草',
     fallback: '📦',
     features: [
       {
         icon: <svg viewBox="0 0 24 24" fill="none" strokeWidth="2"><path d="M3 7h13v8H3zM16 10h4l1 3v2h-5z" /><circle cx="7" cy="19" r="1.5" /><circle cx="18" cy="19" r="1.5" /><path d="M9 11h4" /></svg>,
-        title: '卷烟库存盘点智能体',
-        desc: '通过终端图像识别卷烟品牌与数量,辅助完成库存盘点、异常识别与经营数据沉淀,提升终端管理效率。',
+        title: '货架陈列识别与断货趋势分析',
+        desc: '识别货架陈列合规性、铺货饱满度与断货趋势，辅助市场走访与终端经营。',
       },
       {
         icon: <svg viewBox="0 0 24 24" fill="none" strokeWidth="2"><path d="M12 22c4-3 7-7 7-12a7 7 0 10-14 0c0 5 3 9 7 12z" /><path d="M9 13l1.5-3M13 13l-1-3M15 9l3-2" /></svg>,
-        title: '烟叶病虫害预测辅助智能体',
-        desc: '融合虫情监测、图像识别与预测算法,识别病虫害风险并提供预警与防控建议,辅助科学种植管理。',
+        title: '卷烟库存盘点',
+        desc: '自动识别卷烟品类与数量，提升库存盘点效率与准确率。',
       },
       {
         icon: <svg viewBox="0 0 24 24" fill="none" strokeWidth="2"><path d="M4 4h12a2 2 0 012 2v14H6a2 2 0 01-2-2V4z" /><path d="M8 8h6M8 12h6M8 16h4" /><circle cx="17" cy="16" r="2" /></svg>,
-        title: '烟草客户档案管理智能体',
-        desc: '整合零售户基础信息与动态经营数据,支持自然语言查询、精准筛选与档案自动生成,提升客户分层运营能力。',
+        title: '预约交烟调度分析',
+        desc: '预测交烟节奏，优化烟站调度与现场秩序。',
       },
     ],
     gen: {

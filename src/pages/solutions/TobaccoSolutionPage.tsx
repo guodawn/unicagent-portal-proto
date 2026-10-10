@@ -10,27 +10,33 @@ export const TobaccoSolutionPage: React.FC = () => {
   const journey = [
     {
       icon: 'calendar' as const,
-      order: '01 / 采购调度',
-      title: '预约配送与调拨计划',
-      lead: '结合价格趋势、站点窗口和运输约束，辅助生成配送、调拨与运输方案。',
+      order: '01 / 收购调度',
+      title: '烟叶收购与交烟调度',
+      lead: '识别烟叶质量，预测交烟节奏并优化烟站调度。',
     },
     {
       icon: 'box' as const,
-      order: '02 / 仓储风控',
-      title: '库存盘点与风险防控',
-      lead: '以图像识别、库存台账和风险规则辅助盘点、原料存储与库区预警。',
+      order: '02 / 仓储管理',
+      title: '仓储保管与库存管理',
+      lead: '连接图像识别、库存台账与风险规则，提升盘点效率与仓储周转。',
     },
     {
       icon: 'truck' as const,
-      order: '03 / 物流协同',
-      title: '车辆匹配与路径优化',
-      lead: '结合运输任务、车辆资源和线路条件，形成可复核的调度建议。',
+      order: '03 / 物流调拨',
+      title: '运输调拨与物流优化',
+      lead: '结合运输任务、车辆资源和线路条件，优化车辆匹配、路线与计划。',
     },
     {
       icon: 'store' as const,
       order: '04 / 终端经营',
-      title: '陈列识别与缺货研判',
-      lead: '识别卷烟、价签、空货位及其关联关系，输出终端陈列与缺货趋势洞察。',
+      title: '终端陈列与市场感知',
+      lead: '识别陈列合规性、铺货饱满度与断货趋势，辅助市场走访与终端经营。',
+    },
+    {
+      icon: 'chart' as const,
+      order: '05 / 原料分析',
+      title: '原料分析与数字配方',
+      lead: '以原料数据表征支撑配方优化与质量保障，提升产品竞争力。',
     },
   ];
 
@@ -59,8 +65,8 @@ export const TobaccoSolutionPage: React.FC = () => {
     },
     {
       no: 'T3',
-      title: '调度人员：生成一份可执行的配送建议',
-      lead: '综合预约窗口、站点状态与运力条件，形成优先级、路线与协同事项。',
+      title: '烟站调度：生成交烟与运输计划',
+      lead: '综合预约窗口、站点状态与运力条件，形成调度优先级、路线与协同事项。',
       out: {
         title: '配送调度 · 执行建议',
         input: <>今日 12 个预约窗口<br />待排线</>,
@@ -139,9 +145,7 @@ export const TobaccoSolutionPage: React.FC = () => {
             />
             <p className="sol-hint">点击左侧任务卡，右侧同步展示对应的输出样例</p>
           </div>
-          <div className="sol-board reveal">
-            <SolBoard items={scenarios} />
-          </div>
+          <SolBoard items={scenarios} />
         </div>
       </section>
 

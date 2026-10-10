@@ -9,15 +9,18 @@
 
 .sol{background:#fff;color:var(--ink);overflow-x:clip}
 .sol .sol-svg{width:22px;height:22px;flex-shrink:0}
-/* 每个行业页在品牌色域内有自己的主色倾向：汽车紫 / 电力靛 / 烟草堇紫 / 能源深靛紫 */
+/* 每个行业页在品牌色域内有自己的主色倾向：汽车紫 / 电力靛 / 烟草绿 / 能源深靛紫 */
 .sol--auto{--c1:#7C3AED;--c2:#A78BFA}
 .sol--power{--c1:#6366F1;--c2:#8AB4FF}
-.sol--tobacco{--c1:#9333EA;--c2:#C084FC}
+.sol--tobacco{--c1:#2F7D66;--c2:#78A67A}
 .sol--energy{--c1:#4F46E5;--c2:#8B5CF6}
 
 /* ============ 区块通用 ============ */
 .sol-sec{padding:88px 0}
 .sol-sec--soft{background:var(--bg-soft)}
+.sol--tobacco .sol-sec--soft{background:#F6FAF7}
+.sol--tobacco .sol-tag{color:#2F7D66;background:#EDF7F1;border-color:#CBE5D8}
+.sol--tobacco .sol-eyebrow{color:#2F7D66;background:#EDF7F1;border-color:#CBE5D8}
 .sol-head{max-width:720px;margin:0 auto 52px;text-align:center}
 .sol-head--left{margin:0 0 40px;text-align:left}
 .sol-tag{
@@ -41,7 +44,7 @@
 }
 .sol-hero__mesh::after{
   content:"";position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(124,58,237,.16) 1px,transparent 1.2px);
+  background-image:radial-gradient(circle,color-mix(in srgb,var(--c1) 18%,transparent) 1px,transparent 1.2px);
   background-size:22px 22px;
   -webkit-mask-image:radial-gradient(70% 70% at 70% 30%,#000 0%,transparent 78%);
   mask-image:radial-gradient(70% 70% at 70% 30%,#000 0%,transparent 78%);
@@ -229,6 +232,11 @@
   background:linear-gradient(150deg,#F6F2FF,#EDF0FE);border:1px solid #E4DBFF;
   transition:all .28s ease;
 }
+.sol--tobacco .sol-hint{color:#5B746A}
+.sol--tobacco .sol-hint::before{color:#78A67A}
+.sol--tobacco .sol-board__row:hover{border-color:#B8DDD0;box-shadow:0 12px 30px rgba(47,125,102,.11)}
+.sol--tobacco .sol-board__row.is-on{border-color:#A9D6C4;background:linear-gradient(135deg,#F8FCF9,#EFF8F2);box-shadow:0 12px 30px rgba(47,125,102,.12)}
+.sol--tobacco .sol-board__no{background:#F1F8F4;border-color:#CEE5D9}
 .sol-board__row h3{font-size:16px;font-weight:750;margin:2px 0 7px;color:#211C3E;letter-spacing:-.2px}
 .sol-board__row p{font-size:13px;color:var(--gray);line-height:1.65;margin:0}
 .sol-outcome{
@@ -512,6 +520,7 @@
 .sol-vj__order{
   font-size:11.5px;font-weight:700;letter-spacing:1.5px;color:#B794F6;margin-bottom:5px;
 }
+.sol--tobacco .sol-vj__order{color:#47866E}
 .sol-vj__card h3{font-size:17px;font-weight:750;margin:0 0 7px;color:#211C3E;letter-spacing:-.2px}
 .sol-vj__card p{font-size:13px;color:var(--gray);line-height:1.65;margin:0}
 

@@ -102,9 +102,9 @@ export const AutoSolutionPage: React.FC = () => {
   return (
     <SolPage industry="auto">
       <SolHero
-        eyebrow="汽车行业解决方案 / 客户全旅程"
-        title={<>从销售能力到客户运营<br /><span className="grad">让每次服务更有把握</span></>}
-        lead="连接产品、客户、门店与售后数据，在关键环节为一线提供实时辅助。"
+        eyebrow="汽车行业解决方案 / 产销服一体化"
+        title={<>贯通汽车产销服全链路<br /><span className="grad">让 AI 服务每个业务现场</span></>}
+        lead="覆盖设计研发、生产制造、市场营销、产品销售与售后服务，支持研发提效、线索转化与服务提升。"
         primaryLabel="预约方案沟通"
         secondary={{ label: '查看业务旅程 ↓', href: '#sol-auto-journey' }}
         visual={
@@ -123,8 +123,8 @@ export const AutoSolutionPage: React.FC = () => {
           <div className="reveal">
             <SolHead
               tag="01 / 标杆项目"
-              title="代表性标杆项目，拓展汽车智能业务"
-              lead="覆盖研发、渠道、客户服务与组织管理，为更多智能体的持续扩展提供共同底座。"
+              title="来自汽车产销服全链路的规模化实践"
+              lead="从研发智能搜索到门店智能工牌与销售 AI 对练，形成可复制的行业智能体能力。"
             />
           </div>
           <div className="sol-bench">
@@ -146,8 +146,8 @@ export const AutoSolutionPage: React.FC = () => {
           <div className="reveal">
             <SolHead
               tag="02 / 业务地图"
-              title="贯通研发、渠道与客户运营"
-              lead="围绕角色工作流，连接知识、数据与行动，形成可扩展的业务网络。"
+              title="覆盖研发、制造、营销、销售与服务"
+              lead="围绕产销服全链路连接知识、数据与行动，形成可持续扩展的业务网络。"
             />
           </div>
           <div className="sol-journey reveal">
