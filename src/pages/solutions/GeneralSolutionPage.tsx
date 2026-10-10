@@ -78,7 +78,7 @@ const SCENARIOS: Record<
       { title: '数据沉淀', desc: '把每一次服务转化为结构化数据，沉淀到知识资产中。' },
       { title: '复盘分析', desc: '自动识别服务亮点与短板，生成个性化提升建议。' },
     ],
-    darkTitle: '智能工牌闭环',
+    darkTitle: '覆盖销售服务全过程',
     darkDesc: '从现场到总部，让服务数据驱动业务决策。',
     loops: [
       { num: '1', title: '现场留痕', desc: '多模态采集一线服务过程，关键节点自动标记。' },

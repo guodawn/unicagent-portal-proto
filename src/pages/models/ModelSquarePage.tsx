@@ -631,7 +631,7 @@ export const ModelSquarePage: React.FC = () => {
         ) : (
           <div className="ms-grid">
             {list.map((m) => (
-              <div key={m.id} className="ms-card reveal">
+              <div key={m.id} className="ms-card">
                 <div className="ms-card-head">
                   <div className="ms-vendor">
                     <div className="ms-vendor-logo">{m.logo}</div>

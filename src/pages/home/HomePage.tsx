@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Starfield } from '@/proto/Starfield';
 import { useProtoReveal } from '@/proto/useProtoReveal';
 import { PARTNER_ROWS, REVIEWS, SOLUTION_PANELS } from '@/proto/data';
+import './HomePage.css';
 
 /** 原型首页（docs/07 §3）：Hero 星空 → 行业解决方案 → 合作伙伴跑马灯 → 客户评价 → CTA */
 export const HomePage: React.FC = () => {
