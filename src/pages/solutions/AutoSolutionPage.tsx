@@ -177,9 +177,7 @@ export const AutoSolutionPage: React.FC = () => {
             />
             <p className="sol-hint">点击左侧任务卡，右侧同步展示对应的输出样例</p>
           </div>
-          <div className="sol-board reveal">
-            <SolBoard items={scenarios} />
-          </div>
+          <SolBoard items={scenarios} />
         </div>
       </section>
 

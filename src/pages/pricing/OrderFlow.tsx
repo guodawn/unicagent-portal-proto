@@ -191,7 +191,7 @@ export const OrderModal: React.FC<{
                   onClick={() => setAutoRenew((v) => !v)}
                 />
               </div>
-              <label className="pri-check">
+              <label className="pri-agree">
                 <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} />
                 <span>开启即表示已阅读并同意《自动续费服务协议》及《支付渠道代扣协议》。</span>
               </label>

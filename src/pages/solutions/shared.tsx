@@ -147,7 +147,7 @@ export const SolBoard: React.FC<{ items: SolScenario[] }> = ({ items }) => {
   const [sel, setSel] = useState(0);
   const cur = items[sel];
   return (
-    <div className="sol-board">
+    <div className="sol-board reveal">
       <div className="sol-board__list">
         {items.map((s, i) => (
           <button

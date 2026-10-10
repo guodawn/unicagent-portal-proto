@@ -71,6 +71,10 @@ function ConfigArt({ art }: { art: ConfigArt }) {
             <b aria-label="已接入" />
           </div>
         ))}
+        <button type="button" className="agp-cfg-add">
+          <i aria-hidden="true">＋</i>
+          <span>接入更多业务资料</span>
+        </button>
       </>
     );
   }

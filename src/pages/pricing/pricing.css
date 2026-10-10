@@ -26,7 +26,7 @@
 .pri-hero h1{font-size:40px;line-height:1.28;font-weight:800;letter-spacing:-.5px;margin:0 0 12px;animation:fadeUp .7s .05s both}
 .pri-hero>p{font-size:16px;color:var(--gray);line-height:1.75;margin:0 auto;max-width:620px;animation:fadeUp .7s .12s both}
 .pri-hero__action{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  display:flex;flex-direction:row;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;
   margin-top:26px;min-height:42px;animation:fadeUp .7s .2s both;
 }
 .pri-hero__recharge{padding:11px 30px;font-size:15px}
@@ -252,7 +252,10 @@
 .pri-faqhead{max-width:720px;margin:0 auto 36px;text-align:center}
 .pri-faqhead h2{font-size:28px;font-weight:800;letter-spacing:-.4px;margin:0 0 10px;color:#1B1636}
 .pri-faqhead p{font-size:13.5px;color:var(--gray);margin:0;line-height:1.7}
-.pri-faq__list{border-top:1px solid #E8E6F3}
+.pri-faq__list{
+  border:1px solid #E8E6F3;border-radius:16px;background:#fff;
+  padding:6px 28px;box-shadow:0 6px 20px rgba(43,33,99,.04);
+}
 .pri-faq__item{border-bottom:1px solid #E8E6F3}
 .pri-faq__q{
   width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;
@@ -474,14 +477,14 @@
 }
 .pri-switch.on{background:linear-gradient(90deg,var(--purple),var(--indigo))}
 .pri-switch.on::after{left:21px}
-/* 勾选条款（原版 .checkbox-row：18px 方块与首行文字对齐） */
-.pri-check{
+/* 勾选条款（原版 .checkbox-row：18px 方块与首行文字对齐；类名用 pri-agree 避免与对比表对勾冲突） */
+.pri-agree{
   display:flex;align-items:flex-start;gap:10px;margin-top:16px;cursor:pointer;
   color:var(--gray);font-size:13px;line-height:1.7;
 }
-.pri-check input{
+.pri-agree input{
   width:18px;height:18px;min-width:18px;margin:2px 0 0;
-  accent-color:var(--purple);cursor:pointer;
+  accent-color:var(--purple);cursor:pointer;flex-shrink:0;
 }
 .pri-order__foot{
   display:flex;justify-content:flex-end;gap:10px;
