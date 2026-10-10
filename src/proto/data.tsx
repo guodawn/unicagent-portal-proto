@@ -71,20 +71,7 @@ export const NAV_DROPDOWN_ITEMS: NavDropdownItem[] = [
 /* ====================== 「产品与平台能力」气泡菜单（4 个产品页入口） ====================== */
 
 export const AGENT_NAV_ITEMS: NavDropdownItem[] = [
-  {
-    path: '/agent-platform',
-    title: '智能体开发平台',
-    desc: '总览 · 选择适合你的 AI 使用方式',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
-        <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
-        <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
-        <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
-      </svg>
-    ),
-  },
-  {
+    {
     path: '/agent-platform/digital-employee',
     title: '数字员工平台',
     desc: '面向办公使用者',
@@ -138,20 +125,7 @@ export const MODEL_DROPDOWN_ITEMS: NavDropdownItem[] = [
 /* ====================== 「行业解决方案」气泡菜单（3 个行业页入口） ====================== */
 
 export const SOLUTION_NAV_ITEMS: NavDropdownItem[] = [
-  {
-    path: '/solutions/general',
-    title: '通用解决方案',
-    desc: 'AI 工牌 · AI 对练等通用能力',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
-        <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
-        <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
-        <path d="M14 17h7M17.5 13.5v7" />
-      </svg>
-    ),
-  },
-  {
+    {
     path: '/solutions/auto',
     title: '汽车行业解决方案',
     desc: '客户全旅程与经销运营',
