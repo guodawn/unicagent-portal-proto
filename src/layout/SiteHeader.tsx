@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router';
-import { LogoMarkSvg, NAV_DROPDOWN_ITEMS, AGENT_NAV_ITEMS, SOLUTION_NAV_ITEMS, PRICING_NAV_ITEMS, type NavDropdownItem } from '@/proto/data';
+import { LogoMarkSvg, NAV_DROPDOWN_ITEMS, AGENT_NAV_ITEMS, SOLUTION_NAV_ITEMS, type NavDropdownItem } from '@/proto/data';
 
 /**
  * 一级 Tab 直接进入默认页；悬停或键盘聚焦时展示二级气泡菜单。
@@ -45,7 +45,8 @@ function NavMenuTab({
 
 /**
  * 原型版顶部导航（docs/07 §3.1）：
- * sticky 毛玻璃 + 四个一级入口（首页 / 智能体开发平台 / 行业解决方案 / 定价）及其悬停二级菜单。
+ * sticky 毛玻璃 + 三个悬停二级菜单入口（首页 / 智能体开发平台 / 行业解决方案）；
+ * 「定价」为普通入口，订阅套餐 / API充值 在定价页内切换。
  */
 export const SiteHeader: React.FC = () => {
   const { pathname } = useLocation();
@@ -79,13 +80,7 @@ export const SiteHeader: React.FC = () => {
             active={pathname.startsWith('/solutions')}
             ariaLabel="行业解决方案菜单"
           />
-          <NavMenuTab
-            label="定价"
-            to="/pricing"
-            items={PRICING_NAV_ITEMS}
-            active={pathname.startsWith('/pricing')}
-            ariaLabel="定价菜单"
-          />
+          <Link to="/pricing" className={pathname.startsWith('/pricing') ? 'nav-active' : ''}>定价</Link>
           <Link to="/models">大模型广场</Link>
           <Link to="/docs">文档</Link>
         </nav>
