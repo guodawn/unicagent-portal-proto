@@ -19,6 +19,22 @@ const PrivateDeployPage = lazy(() =>
   import('./pages/services/PrivateDeployPage').then((m) => ({ default: m.PrivateDeployPage }))
 );
 
+// 3. 大模型广场 / 大模型体验
+const ModelSquarePage = lazy(() =>
+  import('./pages/models/ModelSquarePage').then((m) => ({ default: m.ModelSquarePage }))
+);
+const ModelExperiencePage = lazy(() =>
+  import('./pages/models/ModelExperiencePage').then((m) => ({ default: m.ModelExperiencePage }))
+);
+
+// 5. 行业解决方案（一级菜单「行业解决方案」直达 /solutions/general）
+const GeneralSolutionPage = lazy(() =>
+  import('./pages/solutions/GeneralSolutionPage').then((m) => ({ default: m.GeneralSolutionPage }))
+);
+
+// 登录/注册
+const AuthPage = lazy(() => import('./pages/auth/AuthPage').then((m) => ({ default: m.AuthPage })));
+
 function RouteLoading() {
   return (
     <div className="route-loading" aria-busy="true">
@@ -52,22 +68,26 @@ export const PORTAL_ROUTES: RouteObject[] = [
       { path: 'agent-platform/workbench', ...placeholder('智能体工作台') },
       { path: 'agent-platform/suite', ...placeholder('智能体开发套件') },
 
-      // 3. 大模型广场
-      { path: 'models', ...placeholder('大模型广场') },
-      { path: 'models/playground', ...placeholder('大模型体验') },
+      // 3. 大模型广场（原型还原）
+      { path: 'models', element: withSuspense(<ModelSquarePage />) },
+      { path: 'models/playground', element: withSuspense(<ModelExperiencePage />) },
 
       // 4. 定价
       { path: 'pricing', ...placeholder('套餐购买') },
       { path: 'pricing/topup', ...placeholder('API 充值') },
 
-      // 5. 行业解决方案
+      // 5. 行业解决方案（一级菜单直接落 /solutions/general）
+      { path: 'solutions', element: <Navigate to="/solutions/general" replace /> },
       { path: 'solutions/auto', ...placeholder('汽车行业解决方案') },
       { path: 'solutions/power', ...placeholder('电力行业解决方案') },
       { path: 'solutions/energy', ...placeholder('能源行业解决方案') },
-      { path: 'solutions/general', ...placeholder('通用行业解决方案') },
+      { path: 'solutions/general', element: withSuspense(<GeneralSolutionPage />) },
 
       // 6. 文档
       { path: 'docs', ...placeholder('文档中心') },
+
+      // 登录/注册
+      { path: 'auth', element: withSuspense(<AuthPage />) },
 
       { path: '*', element: <NotFoundPage /> },
     ],

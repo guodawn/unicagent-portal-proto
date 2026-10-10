@@ -1,29 +1,19 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router';
-import { LogoMarkSvg, NAV_DROPDOWN_ITEMS } from '@/proto/data';
+import { Link, useLocation } from 'react-router';
+import { LogoMarkSvg, MODEL_DROPDOWN_ITEMS, NAV_DROPDOWN_ITEMS } from '@/proto/data';
 
 /**
  * 原型版顶部导航（docs/07 §3.1）：
- * sticky 毛玻璃 + 「首页」hover 下拉（3 个二级服务页入口）。
- * 「行业解决方案」保持原型锚点行为：非首页先回首页，140ms 后平滑滚动。
+ * sticky 毛玻璃 + 「首页」「大模型广场」hover 下拉。
+ * 「行业解决方案」直接跳转 /solutions/general（原「通用行业解决方案」页）。
  */
 export const SiteHeader: React.FC = () => {
-  const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const handleAnchor = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const scroll = () => {
-      const t = document.querySelector(href);
-      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
-    if (pathname !== '/') {
-      navigate('/');
-      window.setTimeout(scroll, 140);
-    } else {
-      scroll();
-    }
-  };
+  // 一级菜单高亮（原型 navMap：子页高亮其所属一级菜单）
+  const onHome = pathname === '/';
+  const onModels = pathname.startsWith('/models');
+  const onSolutions = pathname.startsWith('/solutions');
 
   return (
     <header className="nav">
@@ -34,7 +24,7 @@ export const SiteHeader: React.FC = () => {
         </Link>
         <nav className="nav-links">
           <div className="nav-item has-dropdown">
-            <Link to="/" className="nav-trigger nav-active">
+            <Link to="/" className={`nav-trigger${onHome ? ' nav-active' : ''}`}>
               首页
             </Link>
             <div className="nav-dropdown" role="menu" aria-label="首页子菜单">
@@ -50,22 +40,32 @@ export const SiteHeader: React.FC = () => {
             </div>
           </div>
           <Link to="/agent-platform">智能体开发平台</Link>
-          <Link to="/models">大模型广场</Link>
+          <div className="nav-item has-dropdown">
+            <Link to="/models" className={`nav-trigger${onModels ? ' nav-active' : ''}`}>
+              大模型广场
+            </Link>
+            <div className="nav-dropdown" role="menu" aria-label="大模型广场子菜单">
+              {MODEL_DROPDOWN_ITEMS.map((item) => (
+                <Link key={item.path} to={item.path} className="dd-item" role="menuitem">
+                  <span className="dd-icon">{item.icon}</span>
+                  <span className="dd-text">
+                    <span className="dd-title">{item.title}</span>
+                    <span className="dd-desc">{item.desc}</span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
           <Link to="/pricing">定价</Link>
-          <a
-            href="#solutions"
-            onClick={(e) => {
-              handleAnchor(e, '#solutions');
-            }}
-          >
+          <Link to="/solutions/general" className={onSolutions ? 'nav-active' : undefined}>
             行业解决方案
-          </a>
+          </Link>
           <Link to="/docs">文档</Link>
         </nav>
         <div className="nav-cta">
-          <a href="#auth" className="btn btn-ghost">
+          <Link to="/auth" className="btn btn-ghost">
             注册/登录
-          </a>
+          </Link>
         </div>
       </div>
     </header>

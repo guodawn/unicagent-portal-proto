@@ -2,12 +2,13 @@ import type { ReactNode } from 'react';
 
 /* ====================== 共享小图标 ====================== */
 
-/** 品牌太阳 mark（header/footer logo 内，白色描边） */
+/** 品牌 logo（用户提供的众调 logo 图，public/images/logo-brand.png，header/footer 共用） */
 export const LogoMarkSvg = (
-  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="3" />
-    <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" />
-  </svg>
+  <img
+    src="/images/logo-brand.png"
+    alt="众调 logo"
+    style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+  />
 );
 
 /** 对勾（cc-check / wc-check 仅线宽不同） */
@@ -62,6 +63,21 @@ export const NAV_DROPDOWN_ITEMS: NavDropdownItem[] = [
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2L4 6v6c0 5 4 8 8 10 4-2 8-5 8-10V6z" />
         <path d="M9 12l2 2 4-4" />
+      </svg>
+    ),
+  },
+];
+
+/* ====================== 导航下拉（大模型广场二级入口） ====================== */
+
+export const MODEL_DROPDOWN_ITEMS: NavDropdownItem[] = [
+  {
+    path: '/models/playground',
+    title: '大模型体验',
+    desc: '多模型在线对话与调试',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
       </svg>
     ),
   },
